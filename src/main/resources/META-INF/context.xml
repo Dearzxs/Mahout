@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context reloadable = "true">
+    <Resource
+            name="jdbc/sampleDS"
+            type="javax.sql.DataSource"
+            maxActive="4"
+            maxIdle="2"
+            maxWait="5000"
+            driverClassName="com.mysql.cj.jdbc.Driver"
+            username="zxs"
+            password="zxs191229."
+            url="jdbc:mysql://47.102.201.188:3306/movie?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+</Context>

@@ -1,4 +1,4 @@
-package main.service;
+package com.movie.service;
 
 import org.apache.mahout.cf.taste.impl.neighborhood.NearestNUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
@@ -16,7 +16,7 @@ import java.util.List;
 public class BaseUserRecommender {
     public static void main(String[] args) throws Exception {
         //准备数据 这里是电影评分数据
-        File file = new File("C:\\Users\\zxs\\Desktop\\ml-10M100K\\ratings.dat");
+        File file = new File("C:\\Users\\zxs\\Desktop\\ratings1.dat");
         //将数据加载到内存中，GroupLensDataModel是针对开放电影评论数据的
         DataModel dataModel = new GroupLensDataModel(file);
         //计算相似度，相似度算法有很多种，欧几里得、皮尔逊等等。
