@@ -154,12 +154,22 @@
                             </a>
                         </li>
 
-                        <!-- Menu Item -->
-                        <li class="nav-item m-auto">
-                            <a href="#login-register-popup" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
-                                <i class="icon-user"></i>登录
-                            </a>
-                        </li>
+                        <c:if test="${sessionScope.user != null}">
+                            <!-- Menu Item -->
+                            <li class="nav-item m-auto">
+                                <a href="#login-register-popup" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
+                                    <i class="icon-user"></i>${sessionScope.user.userName}
+                                </a>
+                            </li>
+                        </c:if>
+                        <c:if test="${sessionScope.user == null}">
+                            <!-- Menu Item -->
+                            <li class="nav-item m-auto">
+                                <a href="#login-register-popup" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
+                                    <i class="icon-user"></i>登录
+                                </a>
+                            </li>
+                        </c:if>
                     </ul>
                     <!-- ====== End of Extra Nav ====== -->
 
@@ -1010,17 +1020,17 @@
         <div class="small-dialog-content">
 
             <!-- Start of Login form -->
-            <form id="cariera_login" method="post">
+            <form id="cariera_login" action="LoginServlet" method="post">
                 <p class="status"></p>
 
                 <div class="form-group">
-                    <label for="username">用户名或邮箱 *</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Your Username or Email *" />
+                    <label for="username">用户名 *</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名*" />
                 </div>
 
                 <div class="form-group">
                     <label for="password">密码 *</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Your Password *" />
+                    <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码*" />
                 </div>
 
                 <div class="form-group">

@@ -82,12 +82,12 @@
                     <div class="small-dialog-content">
 
                         <!-- Start of Login form -->
-                        <form id="cariera_login" method="post">
+                        <form id="cariera_login" action="LoginServlet" method="post">
                             <p class="status"></p>
 
                             <div class="form-group">
-                                <label for="username">用户名/邮箱</label>
-                                <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名或邮箱*" />
+                                <label for="username">用户名</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名*" />
                             </div>
 
                             <div class="form-group">
@@ -167,8 +167,8 @@
                         <form id="forget_pass_form" action="#"  method="post">
                             <p class="status"></p>
                             <div class="form-group">
-                                <label for="password">邮箱地址</label>
-                                <input type="email" name="user_login" class="form-control" id="email3" placeholder="请输入邮箱地址" />
+                                <label for="password">用户名</label>
+                                <input type="email" name="user_login" class="form-control" id="email3" placeholder="请输入用户名" />
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" value="获取新密码" class="btn btn-main btn-effect nomargin" />
