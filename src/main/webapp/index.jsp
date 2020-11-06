@@ -44,7 +44,7 @@
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-
+    <script src="assets/js/echarts.min.js"></script>
 </head>
 
 <body>
@@ -579,7 +579,103 @@
 
             </div>
             <!-- End of Timeline -->
+            <div style="text-align:center;">
+                <div style="height: 50px"></div>
+                <div id="main0" style="width: 450px;height:500px;display:inline-block;"></div>
+                <div id="main4" style="width: 450px;height:500px;display:inline-block;"></div>
+                <div style="height: 50px"></div>
+            </div>
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main0'));
 
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '电影年代信息统计',
+                        subtext: '',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b} : {c} ({d}%)'
+                    },
+                    legend: {
+                        left: 'center',
+                        top: 'bottom',
+                        data: ['2011-2020', '2001-2010', '1991-2000', '1981-1990', '1971-1980', '1961-1970', '1951-1960', '1950之前']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            mark: {show: true},
+                            dataView: {show: true, readOnly: false},
+                            magicType: {
+                                show: true,
+                                type: ['pie', 'funnel']
+                            },
+                            restore: {show: true},
+                            saveAsImage: {show: true}
+                        }
+                    },
+                    series: [
+                        {
+                            name: '年代占比',
+                            type: 'pie',
+                            radius: [35, 130],
+                            center: ['50%', '50%'],
+                            roseType: 'area',
+                            data: [
+                                {value: 10, name: '2011-2020'},
+                                {value: 5, name: '2001-2010'},
+                                {value: 15, name: '1991-2000'},
+                                {value: 25, name: '1981-1990'},
+                                {value: 20, name: '1971-1980'},
+                                {value: 35, name: '1961-1970'},
+                                {value: 30, name: '1951-1960'},
+                                {value: 40, name: '1950之前'}
+                            ]
+                        }
+                    ]
+                };
+
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            </script>
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main4'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '各国9.5分以上高分电影数量',
+                        subtext: '',
+                        left: 'center'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data:  ['英国', '美国', '日国', '德国', '中国', '加拿大', '澳洲']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        data: [85,84,27,13,13,3,3],
+                        type: 'bar',
+                        legendHoverLink:true,
+                        label:{show:true,},
+                        showBackground: false,
+                        color: 'rgba(148,0,211,0.8)',
+                        barWidth:'20'
+                    }]
+                };
+
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            </script>
         </div>
     </section>
     <!-- =============== 使用指南部分 =============== -->
