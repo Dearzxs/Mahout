@@ -1,5 +1,6 @@
 package com.movie.service;
 
+import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 import org.apache.mahout.cf.taste.impl.neighborhood.NearestNUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
 import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
@@ -11,12 +12,14 @@ import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 import org.apache.mahout.cf.taste.similarity.precompute.example.GroupLensDataModel;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseUserRecommender {
-    public static void main(String[] args) throws Exception {
+    public List<String> BUR() throws Exception {
+        String filePath = Hamlet.A.class.getClassLoader().getResource("ratings1.dat").getFile();
         //准备数据 这里是电影评分数据
-        File file = new File("C:\\Users\\zxs\\Desktop\\ratings1.dat");
+        File file = new File(filePath);
         //将数据加载到内存中，GroupLensDataModel是针对开放电影评论数据的
         DataModel dataModel = new GroupLensDataModel(file);
         //计算相似度，相似度算法有很多种，欧几里得、皮尔逊等等。
@@ -30,8 +33,11 @@ public class BaseUserRecommender {
         //打印推荐的结果
         System.out.println("使用基于用户的协同过滤算法");
         System.out.println("为用户5推荐10个商品");
+        List<String> IdList=new ArrayList<String>();
         for (RecommendedItem recommendedItem : recommendedItemList) {
-            System.out.println(recommendedItem);
+//            System.out.println(recommendedItem);
+            IdList.add(String.valueOf(recommendedItem.getItemID()));
         }
+        return IdList;
     }
 }

@@ -130,7 +130,7 @@
 
                                 <!-- Menu Item -->
                                 <li>
-                                    <a class="dropdown-item" href="watch-later.jsp">偏好</a>
+                                    <a class="dropdown-item" href="Recommender">偏好</a>
                                 </li>
                             </ul>
                         </li>

@@ -143,85 +143,27 @@
         <div class="container">
             <!-- Start of Movie List -->
             <div class="row">
+                <c:forEach items="${requestScope.movieReList}" var="item">
                 <!-- Watch Later Item -->
                 <div class="col-md-12 col-sm-12">
                     <div class="watch-later-item">
                         <div class="listing-container">
                             <!-- Movie List Image -->
                             <div class="listing-image">
-                                <img src="assets/images/posters/poster-1.jpg" class="img-shadow" alt="">
+                                <img src="${item.img}" class="img-shadow" alt="">
                             </div>
                             <!-- Movie List Content -->
                             <div class="listing-content">
                                 <div class="inner">
-                                    <h3 class="title">Star Wars</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <h3 class="title">${item.name}</h3>
+                                    <p style="display: -webkit-box;-webkit-line-clamp:3;-webkit-box-orient: vertical;overflow: hidden;">${item.summary}</p>
                                     <a href="movie-detail.jsp" class="btn btn-main btn-effect">watch now</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Watch Later Item -->
-                <div class="col-md-12 col-sm-12">
-                    <div class="watch-later-item">
-                        <div class="listing-container">
-                            <!-- Movie List Image -->
-                            <div class="listing-image">
-                                <img src="assets/images/posters/poster-5.jpg" class="img-shadow" alt="">
-                            </div>
-                            <!-- Movie List Content -->
-                            <div class="listing-content">
-                                <div class="inner">
-                                    <h3 class="title">Daredevil</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    <a href="movie-detail.jsp" class="btn btn-main btn-effect">watch now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Watch Later Item -->
-                <div class="col-md-12 col-sm-12">
-                    <div class="watch-later-item">
-                        <div class="listing-container">
-                            <!-- Movie List Image -->
-                            <div class="listing-image">
-                                <img src="assets/images/posters/poster-7.jpg" class="img-shadow" alt="">
-                            </div>
-                            <!-- Movie List Content -->
-                            <div class="listing-content">
-                                <div class="inner">
-                                    <h3 class="title">Luke Cage</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    <a href="movie-detail.jsp" class="btn btn-main btn-effect">watch now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Watch Later Item -->
-                <div class="col-md-12 col-sm-12">
-                    <div class="watch-later-item">
-                        <div class="listing-container">
-                            <!-- Movie List Image -->
-                            <div class="listing-image">
-                                <img src="assets/images/posters/poster-4.jpg" class="img-shadow" alt="">
-                            </div>
-                            <!-- Movie List Content -->
-                            <div class="listing-content">
-                                <div class="inner">
-                                    <h3 class="title">The Parrot</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    <a href="movie-detail.jsp" class="btn btn-main btn-effect">watch now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                </c:forEach>
             </div>
             <!-- End of Movie List -->
 
