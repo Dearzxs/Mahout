@@ -80,7 +80,7 @@ public class MovieDao extends BaseDao{
         try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             for (int i = 0; i < s.size(); i++) {
                 pstmt.setInt(i+1, Integer.parseInt(s.get(i)));//对SQL语句第一个参数赋值
-                System.out.println(s.get(i));
+                //System.out.println(s.get(i));
             }
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {

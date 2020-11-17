@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseUserRecommender {
-    public List<String> BUR() throws Exception {
+    public List<String> BUR(String userid) throws Exception {
         String filePath = Hamlet.A.class.getClassLoader().getResource("ratings1.dat").getFile();
         //准备数据 这里是电影评分数据
         File file = new File(filePath);
@@ -29,10 +29,10 @@ public class BaseUserRecommender {
         //构建推荐器，协同过滤推荐有两种，分别是基于用户的和基于物品的，这里使用基于用户的协同过滤推荐
         Recommender recommender = new GenericUserBasedRecommender(dataModel, userNeighborhood, similarity);
         //给用户ID等于5的用户推荐10部电影
-        List<RecommendedItem> recommendedItemList = recommender.recommend(5, 10);
+        List<RecommendedItem> recommendedItemList = recommender.recommend(Long.parseLong(userid), 10);
         //打印推荐的结果
         System.out.println("使用基于用户的协同过滤算法");
-        System.out.println("为用户5推荐10个商品");
+        System.out.println("为用户"+userid+"推荐10个商品");
         List<String> IdList=new ArrayList<String>();
         for (RecommendedItem recommendedItem : recommendedItemList) {
 //            System.out.println(recommendedItem);

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: zxs
   Date: 2020/10/22
@@ -110,8 +110,8 @@
                         </li>
                         <!-- Menu Item -->
                         <li class="nav-item m-auto">
-                            <a href="#login-register-popup" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
-                                <i class="icon-user"></i>登录
+                            <a href="" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
+                                <i class="icon-user"></i>${sessionScope.user.userName}
                             </a>
                         </li>
                     </ul>
@@ -148,14 +148,14 @@
             // 指定图表的配置项和数据
             var option = {
                 title: {
-                    text: '基础雷达图',
+                    text: '个人偏好图',
                     left:'center'
                 },
                 tooltip: {},
                 legend: {
                     left:'center',
                     top:'bottom',
-                    data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
+                    data: ['电影类型（Film Type）']
                 },
                 radar: {
                     // shape: 'circle',
@@ -168,26 +168,22 @@
                         }
                     },
                     indicator: [
-                        { name: '销售（sales）', max: 6500},
-                        { name: '管理（Administration）', max: 16000},
-                        { name: '信息技术（Information Techology）', max: 30000},
-                        { name: '客服（Customer Support）', max: 38000},
-                        { name: '研发（Development）', max: 52000},
-                        { name: '市场（Marketing）', max: 25000}
+                        { name: '${TyList[0]}', max: ${CtList[0]}},
+                        { name: '${TyList[1]}', max: ${CtList[0]}},
+                        { name: '${TyList[2]}', max: ${CtList[0]}},
+                        { name: '${TyList[3]}', max: ${CtList[0]}},
+                        { name: '${TyList[4]}', max: ${CtList[0]}},
+                        { name: '${TyList[5]}', max: ${CtList[0]}}
                     ]
                 },
                 series: [{
-                    name: '预算 vs 开销（Budget vs spending）',
+                    name: '电影分布（Film Distribution）',
                     type: 'radar',
                     // areaStyle: {normal: {}},
                     data: [
                         {
-                            value: [4300, 10000, 28000, 35000, 50000, 19000],
-                            name: '预算分配（Allocated Budget）'
-                        },
-                        {
-                            value: [5000, 14000, 28000, 31000, 42000, 21000],
-                            name: '实际开销（Actual Spending）'
+                            value: [${CtList[0]}, ${CtList[1]}, ${CtList[2]}, ${CtList[3]}, ${CtList[4]}, ${CtList[5]}],
+                            name: '电影分布（Film Distribution）'
                         }
                     ]
                 }]

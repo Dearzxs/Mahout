@@ -157,7 +157,7 @@
                         <c:if test="${sessionScope.user != null}">
                             <!-- Menu Item -->
                             <li class="nav-item m-auto">
-                                <a href="#login-register-popup" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
+                                <a href="" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
                                     <i class="icon-user"></i>${sessionScope.user.userName}
                                 </a>
                             </li>
