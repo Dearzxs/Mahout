@@ -30,4 +30,15 @@
     <!--过滤站点下所有文件,也可设置成过滤某一类文件如:  "*.jsp" 或是过滤掉某一个文件夹下的所有文件,如: "/目录名/*" -->
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+  <!-- 配置404页面 -->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.html</location>
+  </error-page>
+  <!-- 配置500页面 -->
+  <error-page>
+    <error-code>500</error-code>
+    <location>/500.html</location>
+  </error-page>
 </web-app>
