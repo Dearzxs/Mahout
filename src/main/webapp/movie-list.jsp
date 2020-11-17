@@ -206,13 +206,15 @@
                         <div class="d-flex">
                             <div class="links">
                                 <ul class="list-inline">
-                                    <li class="list-inline-item"><a href="#">Privacy & Cookies</a></li>
-                                    <li class="list-inline-item"><a href="#">Terms & Conditions</a></li>
-                                    <li class="list-inline-item"><a href="#">Legal Disclaimer</a></li>
-                                    <li class="list-inline-item"><a href="#">Community</a></li>
+                                    <li class="list-inline-item"><a href="#">隐私和Cookie</a></li>
+                                    <li class="list-inline-item"><a href="#">条款和条件</a></li>
+                                    <li class="list-inline-item"><a href="#">法律免责声明</a></li>
+                                    <li class="list-inline-item"><a href="#">社区</a></li>
                                 </ul>
                             </div>
-                            <div class="copyright ml-auto">All Rights Reserved by <a href="#">Movify</a>.</div>
+
+                            <div class="copyright ml-auto">版权所有 <a href="#">Movify</a>.</div>
+
                         </div>
                     </div>
                 </div>
@@ -223,7 +225,6 @@
     <!-- =============== END OF FOOTER =============== -->
 </div>
 <!-- =============== END OF WRAPPER =============== -->
-
 
 <!-- ===== Start of Back to Top Button ===== -->
 <div id="backtotop">

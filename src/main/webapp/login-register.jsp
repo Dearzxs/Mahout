@@ -98,7 +98,7 @@
                             <div class="form-group">
                                 <div class="checkbox pad-bottom-10">
                                     <input id="check1" type="checkbox" name="remember" value="yes">
-                                    <label for="check1">保持登录</label>
+                                    <label for="check1">记住我</label>
                                 </div>
                             </div>
 
