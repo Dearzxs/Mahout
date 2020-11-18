@@ -254,27 +254,21 @@
             <div class="owl-carousel recommended-slider mt20">
                 <!-- === Start of Sliding Item 1 === -->
                 <!-- 这里自动填充到4个，如果多于4个自动分页，少于4个就会用 item1填满4个 -->
-                <div class="item">
+                <c:forEach items="${requestScope.movieIReList}" var="birmov">
+                    <div class="item">
                     <!-- Start of Movie Box -->
                     <div class="movie-box-1">
                         <!-- Start of Poster -->
                         <div class="poster">
-                            <img src="assets/images/posters/poster-5.jpg" alt="">
+                            <img src="${birmov.img}" alt="">
                         </div>
                         <!-- End of Poster -->
-                        <!-- Start of Buttons -->
-                        <div class="buttons">
-                            <a href="https://www.youtube.com/watch?v=Q0CbN8sfihY" class="play-video">
-                                <i class="fa fa-play"></i>
-                            </a>
-                        </div>
-                        <!-- End of Buttons -->
                         <!-- Start of Movie Details -->
                         <div class="movie-details">
                             <h4 class="movie-title">
-                                <a href="movie-detail.jsp">Daredevil</a>
+                                <a href="movie-detail.jsp">${birmov.name}</a>
                             </h4>
-                            <span class="released">19 Apr 2015</span>
+                            <span class="released">${birmov.year}</span>
                         </div>
                         <!-- End of Movie Details -->
                         <!-- Start of Rating -->
@@ -286,12 +280,13 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-half-o"></i>
                             </div>
-                            <span>8.7 / 10</span>
+                            <span>${birmov.rating}</span>
                         </div>
                         <!-- End of Rating -->
                     </div>
                     <!-- End of Movie Box -->
                 </div>
+                </c:forEach>
                 <!-- === End of Sliding Item 1 === -->
             </div>
             <!-- End of Latest Movies Slider -->
