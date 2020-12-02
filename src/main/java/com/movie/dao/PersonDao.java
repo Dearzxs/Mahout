@@ -48,4 +48,27 @@ public class PersonDao extends BaseDao{
         }
         return count;//返回总记录数
     }
+
+    public List<person> SearchPersonByName(String name){
+        List<person> personList=new ArrayList<>();
+        String sql ="select * from person where name like ?";//分页查询的SQL语句
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,name+"%");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                person per = new person();
+                per.setId(rs.getString("pid"));
+                per.setName(rs.getString("name"));
+                per.setImg(rs.getString("img"));
+                per.setSex(rs.getString("sex"));
+                per.setBirthday(rs.getString("birthday"));
+                per.setBirthplace(rs.getString("birthplace"));
+                per.setSummary(rs.getString("summary"));
+                personList.add(per);//将Product对象添加到List集合中
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return personList;
+    }
 }

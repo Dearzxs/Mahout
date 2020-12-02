@@ -164,4 +164,79 @@ public class MovieDao extends BaseDao{
         }
         return movieList;
     }
+
+    public List<movies> SearchMovieByName(String name){
+        List<movies> movieList=new ArrayList<>();
+        String sql ="select * from movies where name like ?";//分页查询的SQL语句
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,name+"%");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                movies movie = new movies();
+                movie.setId(rs.getString("mid"));
+                movie.setName(rs.getString("name"));
+                movie.setYear(rs.getString("year"));
+                movie.setRating(rs.getString("rating"));
+                movie.setImg(rs.getString("img"));
+                movie.setTags(rs.getString("tags"));
+                movie.setSummary(rs.getString("summary"));
+                movie.setGenre(rs.getString("genre"));
+                movie.setCountry(rs.getString("country"));
+                movieList.add(movie);//将Product对象添加到List集合中
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movieList;
+    }
+
+    public List<movies> SearchMovieByType(String type){
+        List<movies> movieList=new ArrayList<>();
+        String sql ="select * from movies where genre like ?";//分页查询的SQL语句
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,type+"%");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                movies movie = new movies();
+                movie.setId(rs.getString("mid"));
+                movie.setName(rs.getString("name"));
+                movie.setYear(rs.getString("year"));
+                movie.setRating(rs.getString("rating"));
+                movie.setImg(rs.getString("img"));
+                movie.setTags(rs.getString("tags"));
+                movie.setSummary(rs.getString("summary"));
+                movie.setGenre(rs.getString("genre"));
+                movie.setCountry(rs.getString("country"));
+                movieList.add(movie);//将movie对象添加到List集合中
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movieList;
+    }
+
+    public List<movies> SearchMovieByYear(String year){
+        List<movies> movieList=new ArrayList<>();
+        String sql ="select * from movies where genre = ?";//分页查询的SQL语句
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,year);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                movies movie = new movies();
+                movie.setId(rs.getString("mid"));
+                movie.setName(rs.getString("name"));
+                movie.setYear(rs.getString("year"));
+                movie.setRating(rs.getString("rating"));
+                movie.setImg(rs.getString("img"));
+                movie.setTags(rs.getString("tags"));
+                movie.setSummary(rs.getString("summary"));
+                movie.setGenre(rs.getString("genre"));
+                movie.setCountry(rs.getString("country"));
+                movieList.add(movie);//将movie对象添加到List集合中
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movieList;
+    }
 }

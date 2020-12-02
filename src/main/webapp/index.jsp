@@ -204,26 +204,21 @@
                              style="z-index: 5; color: #fff; font-weight: 900;">
 
                             <!-- ===== START OF SEARCH FORM ===== -->
-                            <form id="search-form-1">
+                            <form id="search-form-1" action="SearchServlet" method="post">
 
-                                <!-- Sort by -->
-                                <div class="sort-by">
-                                    <div class="sort-by-select">
-                                        <select class="chosen-select-no-single">
-                                            <option>Default Order</option>
-                                            <option>Featured</option>
-                                            <option>Top Viewed</option>
-                                            <option>Top Rated</option>
-                                            <option>Newest</option>
-                                            <option>Oldest</option>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-2 col-2">
+                                        <select name="selecttype">
+                                            <option value="mna">电影名称</option>
+                                            <option value="mty">电影类型</option>
+                                            <option value="mye">电影年份</option>
+                                            <option value="mac">电影演员</option>
                                         </select>
                                     </div>
-                                </div>
-                                <!-- Sort by / End -->
-                                <div class="row justify-content-center">
+
                                     <div class="col-md-8 col-sm-10 col-12">
                                         <div class="form-group">
-                                            <input name="search-keyword" type="text" id="search-keyword" value="" class="form-control" placeholder="请输入你想要了解的电影">
+                                            <input name="search-keyword" type="text" id="search-keyword" value="" class="form-control" placeholder="请输入你想要了解的">
                                             <button type="submit" class="btn btn-main btn-effect"><i class="fa fa-search"></i></button>
                                         </div>
                                     </div>
