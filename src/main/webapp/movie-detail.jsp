@@ -217,17 +217,19 @@
                         <!-- Start of Details Widget -->
                         <aside class="widget widget-movie-cast">
                             <h3 class="title">演职人员</h3>
+                            <c:forEach items="${requestScope.personList}" var="pList">
                             <ul class="cast-wrapper">
                                 <!--jsp标签循环演员个人信息和照片 5人-->
                                 <li>
                                     <a href="celebrity-detail.jsp">
                                             <span class="circle-img">
-                                                <img src="assets/images/celebrities/celebrity1.jpg" alt="">
+                                                <img src="${pList.img}" alt="">
                                             </span>
-                                        <h6 class="name">Bryan Doe</h6>
+                                        <h6 class="name">${pList.name}</h6>
                                     </a>
                                 </li>
                             </ul>
+                            </c:forEach>
                             <a href="celebrities-list.jsp" class="btn btn-main btn-effect mt20">view all</a>
                         </aside>
                         <!-- End of Details Widget -->

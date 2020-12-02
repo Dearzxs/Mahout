@@ -26,13 +26,13 @@ public class QueAllPerson extends HttpServlet {
         List<person> personList = dao.QueAllPerson(currPage);//查询所有演员的信息
         request.setAttribute("personList", personList);//将list放置到request中
         request.setAttribute("currPage",currPage);
-        int pages;//总页数
-        int count = dao.QueAllPersonCount();//查询总记录数
-        if (count % person.PAGE_SIZE == 0) {
-            pages = count / person.PAGE_SIZE;//对总页数赋值
-        } else {
-            pages = count / person.PAGE_SIZE + 1;//对总页数赋值
-        }
+//        int pages;//总页数
+//        int count = dao.QueAllPersonCount();//查询总记录数
+//        if (count % person.PAGE_SIZE == 0) {
+//            pages = count / person.PAGE_SIZE;//对总页数赋值
+//        } else {
+//            pages = count / person.PAGE_SIZE + 1;//对总页数赋值
+//        }
         request.getRequestDispatcher("celebrities-list.jsp").forward(request, response);//将请求转发到show.jsp页面中
     }
 }

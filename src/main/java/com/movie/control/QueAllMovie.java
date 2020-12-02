@@ -26,13 +26,13 @@ public class QueAllMovie extends HttpServlet {
         List<movies> movieList = dao.QueAllMovie(currPage);//查询所有电影的信息
         request.setAttribute("movieList", movieList);//将list放置到request中
         request.setAttribute("currPage",currPage);
-        int pages;//总页数
-        int count = dao.QueAllMovieCount();//查询总记录数
-        if (count % movies.PAGE_SIZE == 0) {
-            pages = count / movies.PAGE_SIZE;//对总页数赋值
-        } else {
-            pages = count / movies.PAGE_SIZE + 1;//对总页数赋值
-        }
+//        int pages;//总页数
+//        int count = dao.QueAllMovieCount();//查询总记录数
+//        if (count % movies.PAGE_SIZE == 0) {
+//            pages = count / movies.PAGE_SIZE;//对总页数赋值
+//        } else {
+//            pages = count / movies.PAGE_SIZE + 1;//对总页数赋值
+//        }
         request.getRequestDispatcher("movie-list.jsp").forward(request, response);//将请求转发到show.jsp页面中
     }
 }

@@ -3,6 +3,7 @@ package com.movie.control;
 import com.movie.dao.MovieDao;
 import com.movie.model.User;
 import com.movie.model.movies;
+import com.movie.model.person;
 import com.movie.service.BaseItemRecommender;
 
 import javax.servlet.ServletException;
@@ -34,7 +35,12 @@ public class ShowMovieDetails extends HttpServlet {
             List<String> tempList=bir.BIR(TemUser.getUserId(),id);
             List<String> tempList1=dao.TransformId2(tempList);
             List<movies> movieIReList=dao.RecommenderMovie2(tempList1);
+
+            List<String> actorList=dao.ActorList1(id);
+            List<person> personList=dao.ActorList(actorList);
+
             request.setAttribute("movieIReList", movieIReList);//将list放置到request中
+            request.setAttribute("personList", personList);//将list放置到request中
         } catch (Exception e) {
             e.printStackTrace();
         }

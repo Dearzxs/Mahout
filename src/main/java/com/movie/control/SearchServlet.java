@@ -22,22 +22,23 @@ public class SearchServlet extends HttpServlet {
         String selecttype=request.getParameter("selecttype");
         String kword=request.getParameter("search-keyword");
         MovieDao dao = new MovieDao();
-        List<movies> movieList=new ArrayList<>();
-        if(kword.equals("mac")){
+        List<movies> movieList;
+        if(selecttype.equals("mac")){
             PersonDao dao1=new PersonDao();
             List<person> personList=dao1.SearchPersonByName(kword);
             request.setAttribute("personList", personList);//将list放置到request中
             request.setAttribute("currPage",1);
             request.getRequestDispatcher("search-person.jsp").forward(request, response);
         }else{
-            if(kword.equals("mna")){
+            if(selecttype.equals("mna")){
                 movieList = dao.SearchMovieByName(kword);
-            }else if(kword.equals("mty")){
+            }else if(selecttype.equals("mty")){
                 movieList = dao.SearchMovieByType(kword);
             }else{
                 movieList = dao.SearchMovieByYear(kword);
             }
-            request.setAttribute("movieList", movieList);//将list放置到request中
+            List<movies> movieList1=movieList.subList(0,10);
+            request.setAttribute("movieList", movieList1);//将list放置到request中
             request.setAttribute("currPage",1);
             request.getRequestDispatcher("search-movie.jsp").forward(request, response);
         }

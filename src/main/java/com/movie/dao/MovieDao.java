@@ -1,6 +1,7 @@
 package com.movie.dao;
 
 import com.movie.model.movies;
+import com.movie.model.person;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -217,7 +218,7 @@ public class MovieDao extends BaseDao{
 
     public List<movies> SearchMovieByYear(String year){
         List<movies> movieList=new ArrayList<>();
-        String sql ="select * from movies where genre = ?";//分页查询的SQL语句
+        String sql ="select * from movies where year = ?";//分页查询的SQL语句
         try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,year);
             ResultSet rs = pstmt.executeQuery();
@@ -238,5 +239,46 @@ public class MovieDao extends BaseDao{
             e.printStackTrace();
         }
         return movieList;
+    }
+
+    public List<String> ActorList1(String id){
+        List<String> personList=new ArrayList<>();
+        String sql ="select person_id from relationships where movie_id = ? and role='actor' ";//分页查询的SQL语句
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                personList.add(rs.getString("person_id"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        personList=personList.subList(0,5);
+        return personList;
+    }
+
+    public List<person> ActorList(List<String> s){
+        List<person> personList=new ArrayList<>();
+        String sql ="select * from person where pid in (?,?,?,?,?)";//分页查询的SQL语句
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            for (int i = 0; i < s.size(); i++) {
+                pstmt.setString(i+1, (s.get(i)));//对SQL语句第一个参数赋值
+            }
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                person per = new person();
+                per.setId(rs.getString("pid"));
+                per.setName(rs.getString("name"));
+                per.setImg(rs.getString("img"));
+                per.setSex(rs.getString("sex"));
+                per.setBirthday(rs.getString("birthday"));
+                per.setBirthplace(rs.getString("birthplace"));
+                per.setSummary(rs.getString("summary"));
+                personList.add(per);//将Product对象添加到List集合中
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return personList;
     }
 }
