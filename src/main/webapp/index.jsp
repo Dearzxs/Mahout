@@ -205,6 +205,21 @@
 
                             <!-- ===== START OF SEARCH FORM ===== -->
                             <form id="search-form-1">
+
+                                <!-- Sort by -->
+                                <div class="sort-by">
+                                    <div class="sort-by-select">
+                                        <select class="chosen-select-no-single">
+                                            <option>Default Order</option>
+                                            <option>Featured</option>
+                                            <option>Top Viewed</option>
+                                            <option>Top Rated</option>
+                                            <option>Newest</option>
+                                            <option>Oldest</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Sort by / End -->
                                 <div class="row justify-content-center">
                                     <div class="col-md-8 col-sm-10 col-12">
                                         <div class="form-group">
