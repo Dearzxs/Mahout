@@ -101,7 +101,7 @@
                     <ul class="navbar-nav mx-auto" id="main-menu">
                         <!-- Menu Item -->
                         <li class="nav-item">
-                            <a class="nav-link" href="contact-us.jsp">联系我们</a>
+                            <a class="nav-link" href="personal-homepage.jsp">联系我们</a>
                         </li>
                     </ul>
                     <!-- ====== End of Main Menu ====== -->

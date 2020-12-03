@@ -281,4 +281,46 @@ public class MovieDao extends BaseDao{
         }
         return personList;
     }
+
+    public List<String> TransformId3(String uname){
+        List<String> mList=new ArrayList<>();
+        String sql ="select mid from NewusrRate where uname=?";//待优化，可用临时表
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, uname);//对SQL语句第一个参数赋值
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                mList.add(rs.getString("mid"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mList;
+    }
+
+    public List<movies> RecommenderMovie3(List<String> s){
+        List<movies> movieList=new ArrayList<>();
+        String sql ="select * from movies where mid in (?,?,?,?,?,?,?,?,?,?)";//分页查询的SQL语句
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            for (int i = 0; i < 10; i++) {
+                pstmt.setInt(i+1, Integer.parseInt(s.get(i)));//对SQL语句第一个参数赋值
+            }
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                movies movie = new movies();
+                movie.setId(rs.getString("mid"));
+                movie.setName(rs.getString("name"));
+                movie.setYear(rs.getString("year"));
+                movie.setRating(rs.getString("rating"));
+                movie.setImg(rs.getString("img"));
+                movie.setTags(rs.getString("tags"));
+                movie.setSummary(rs.getString("summary"));
+                movie.setGenre(rs.getString("genre"));
+                movie.setCountry(rs.getString("country"));
+                movieList.add(movie);//将Product对象添加到List集合中
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movieList;
+    }
 }

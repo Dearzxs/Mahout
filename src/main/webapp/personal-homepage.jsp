@@ -49,6 +49,7 @@
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+    <script src="assets/js/echarts.min.js"></script>
 </head>
 <body>
 
@@ -77,16 +78,69 @@
     <section class="page-header overlay-gradient" style="background: url(assets/images/posters/movie-collection.jpg);">
         <div class="container">
             <div class="inner">
-                <h2 class="title">联系我们</h2>
+                <h2 class="title">个人主页</h2>
                 <ol class="breadcrumb">
                     <li><a href="index.jsp">主页</a></li>
-                    <li>联系我们</li>
+                    <li>个人主页</li>
                 </ol>
             </div>
         </div>
     </section>
     <!-- =============== END OF PAGE HEADER =============== -->
+    <div style="text-align:center;">
+        <div style="height: 40px"></div>
+        <div id="main1" style="width: 600px;height:480px;display:inline-block;"></div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main1'));
 
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '观影历史',
+                    left:'center'
+                },
+                tooltip: {},
+                legend: {
+                    left:'center',
+                    top:'bottom',
+                    data: ['电影类型（Film Type）']
+                },
+                radar: {
+                    // shape: 'circle',
+                    name: {
+                        textStyle: {
+                            color: '#fff',
+                            backgroundColor: '#999',
+                            borderRadius: 3,
+                            padding: [3, 5]
+                        }
+                    },
+                    indicator: [
+                        { name: '${requestScope.TList[0]}', max: ${requestScope.CList[0]}},
+                        { name: '${requestScope.TList[1]}', max: ${requestScope.CList[0]}},
+                        { name: '${requestScope.TList[2]}', max: ${requestScope.CList[0]}},
+                        { name: '${requestScope.TList[3]}', max: ${requestScope.CList[0]}},
+                        { name: '${requestScope.TList[4]}', max: ${requestScope.CList[0]}},
+                        { name: '${requestScope.TList[5]}', max: ${requestScope.CList[0]}}
+                    ]
+                },
+                series: [{
+                    name: '电影分布（Film Distribution）',
+                    type: 'radar',
+                    // areaStyle: {normal: {}},
+                    data: [
+                        {
+                            value: [${requestScope.CList[0]}, ${requestScope.CList[1]}, ${requestScope.CList[2]}, ${requestScope.CList[3]}, ${requestScope.CList[4]}, ${requestScope.CList[5]}],
+                            name: '电影分布（Film Distribution）'
+                        }
+                    ]
+                }]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+    </div>
     <!-- =============== START OF MAIN =============== -->
     <main class="contact-page ptb100">
         <div class="container">
@@ -95,7 +149,7 @@
                 <div class="col-md-4 col-sm-12">
                     <h3 class="title">Info</h3>
                     <div class="details-wrapper">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                        <p>${sessionScope.user.userName}</p>
                         <ul class="contact-details">
                             <li>
                                 <i class="icon-phone"></i>
@@ -121,39 +175,6 @@
                     </div>
                 </div>
                 <!-- Start of Contact Details -->
-
-                <!-- Start of Contact Form -->
-                <div class="col-md-8 col-sm-12">
-                    <h3 class="title">Contact Form</h3>
-                    <!-- Start of Contact Form -->
-                    <form id="contact-form">
-                        <!-- contact result -->
-                        <div id="contact-result"></div>
-                        <!-- end of contact result -->
-                        <!-- Form Group -->
-                        <div class="form-group">
-                            <input class="form-control input-box" type="text" name="name" placeholder="Your Name" autocomplete="off">
-                        </div>
-                        <!-- Form Group -->
-                        <div class="form-group">
-                            <input class="form-control input-box" type="email" name="email" placeholder="your-email@movify.com" autocomplete="off">
-                        </div>
-                        <!-- Form Group -->
-                        <div class="form-group">
-                            <input class="form-control input-box" type="text" name="subject" placeholder="Subject" autocomplete="off">
-                        </div>
-                        <!-- Form Group -->
-                        <div class="form-group mb20">
-                            <textarea class="form-control textarea-box" rows="8" name="message" placeholder="Type your message..."></textarea>
-                        </div>
-                        <!-- Form Group -->
-                        <div class="form-group text-center">
-                            <button class="btn btn-main btn-effect" type="submit">Send message</button>
-                        </div>
-                    </form>
-                    <!-- End of Contact Form -->
-                </div>
-                <!-- Start of Contact Form -->
             </div>
         </div>
     </main>

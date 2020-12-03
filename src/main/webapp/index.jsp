@@ -111,7 +111,7 @@
 
                         <!-- Menu Item -->
                         <li class="nav-item">
-                            <a class="nav-link" href="contact-us.jsp">联系我们</a>
+                            <a class="nav-link" href="PersonServlet">个人中心</a>
                         </li>
 
                     </ul>
@@ -131,7 +131,7 @@
                         <c:if test="${sessionScope.user != null}">
                             <!-- Menu Item -->
                             <li class="nav-item m-auto">
-                                <a href="" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
+                                <a href="#" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
                                     <i class="icon-user"></i>${sessionScope.user.userName}
                                 </a>
                             </li>
