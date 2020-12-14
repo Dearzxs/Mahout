@@ -25,11 +25,13 @@ public class PersonServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MovieDao dao=new MovieDao();
         CountType cp=new CountType();
+
         HttpSession session = request.getSession();
         User TemUser=(User)session.getAttribute("user");
         try {
-            List<String> tempList1=dao.TransformId3(TemUser.getUserName());
-            List<movies> movieReList=dao.RecommenderMovie3(tempList1);
+
+            List<movies> movieReList=dao.MovieHistoryList(TemUser.getUserName());
+
             Map<String, Integer> mp=cp.CountTy(movieReList);
             int index=0;
             List<String> TyList = new ArrayList<String>();
@@ -40,6 +42,7 @@ public class PersonServlet extends HttpServlet {
                 CtList.add(entry.getValue());
                 index++;
             }
+
             request.setAttribute("TList", TyList);//将list放置到request中
             request.setAttribute("CList", CtList);//将list放置到request中
         } catch (Exception e) {

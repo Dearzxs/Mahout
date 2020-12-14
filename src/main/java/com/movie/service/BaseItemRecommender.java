@@ -31,7 +31,7 @@ public class BaseItemRecommender {
         System.out.println("根据用户"+userid+"当前浏览的电影"+mid+"推荐4个相似的电影");
         List<String> IdList=new ArrayList<String>();
         for (RecommendedItem recommendedItem : recommendedItemList) {
-            System.out.println(recommendedItem);
+//            System.out.println(recommendedItem);
             IdList.add(String.valueOf(recommendedItem.getItemID()));
         }
         return IdList;

@@ -26,21 +26,22 @@ public class ShowMovieDetails extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id=request.getParameter("id");
         MovieDao dao=new MovieDao();
-        movies mo =dao.QueOneMovie(id);
-        request.setAttribute("movieDetails", mo);
+
+        movies mov =dao.QueOneMovie(id);//获得该电影详细内容
+        request.setAttribute("movieDetails", mov);
+
         BaseItemRecommender bir=new BaseItemRecommender();
         HttpSession session = request.getSession();
         User TemUser=(User)session.getAttribute("user");
         try {
+
+            List<person> performerList=dao.PerformerList(id);
+
             List<String> tempList=bir.BIR(TemUser.getUserId(),id);
-            List<String> tempList1=dao.TransformId2(tempList);
-            List<movies> movieIReList=dao.RecommenderMovie2(tempList1);
+            List<movies> movieItemReList=dao.RecommenderMovieByItem(tempList);
 
-            List<String> actorList=dao.ActorList1(id);
-            List<person> personList=dao.ActorList(actorList);
-
-            request.setAttribute("movieIReList", movieIReList);//将list放置到request中
-            request.setAttribute("personList", personList);//将list放置到request中
+            request.setAttribute("movieIReList", movieItemReList);//将基于电影的推荐列表放置到request中
+            request.setAttribute("personList", performerList);//将参演人员列表放置到request中
         } catch (Exception e) {
             e.printStackTrace();
         }

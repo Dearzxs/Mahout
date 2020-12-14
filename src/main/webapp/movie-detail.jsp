@@ -107,13 +107,6 @@
                     <ul class="navbar-nav extra-nav">
 
                         <!-- Menu Item -->
-                        <li class="nav-item">
-                            <a class="nav-link toggle-search" href="#">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </li>
-
-                        <!-- Menu Item -->
                         <li class="nav-item m-auto">
                             <a href="" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
                                 <i class="icon-user"></i>${sessionScope.user.userName}

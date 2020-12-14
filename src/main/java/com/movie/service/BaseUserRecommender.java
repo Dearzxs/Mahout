@@ -32,8 +32,8 @@ public class BaseUserRecommender {
         //给用户ID等于5的用户推荐10部电影
         List<RecommendedItem> recommendedItemList = recommender.recommend(Long.parseLong(userid), 20);
         //打印推荐的结果
-        System.out.println("使用基于用户的协同过滤算法");
-        System.out.println("为用户"+userid+"推荐20个商品");
+//        System.out.println("使用基于用户的协同过滤算法");
+//        System.out.println("为用户"+userid+"推荐20个商品");
         List<String> IdList=new ArrayList<String>();
         for (RecommendedItem recommendedItem : recommendedItemList) {
 //            System.out.println(recommendedItem);

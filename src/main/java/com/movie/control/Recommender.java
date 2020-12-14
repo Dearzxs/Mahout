@@ -25,27 +25,31 @@ public class Recommender extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MovieDao dao=new MovieDao();
-        BaseUserRecommender bur=new BaseUserRecommender();
-        CountType cp=new CountType();
+        BaseUserRecommender bur=new BaseUserRecommender();//获得推荐类
+        CountType cp=new CountType();//统计电影电影类型类
         HttpSession session = request.getSession();
         User TemUser=(User)session.getAttribute("user");
         try {
-            List<String> tempList=bur.BUR(TemUser.getUserId());
-            List<String> tempList1=dao.TransformId(tempList);
-            List<movies> movieReList=dao.RecommenderMovie(tempList1);
+
+            List<String> tempList=bur.BUR(TemUser.getUserId());//获得推荐电影的ID
+            List<movies> movieReList=dao.RecommenderMovieByUser(tempList);//根据推荐电影ID获得电影列表
+
+            //统计前六项类型
             Map<String, Integer> mp=cp.CountTy(movieReList);
-            int index=0;
             List<String> TyList = new ArrayList<String>();
             List<Integer> CtList = new ArrayList<Integer>();
+            int index=0;
             for (Map.Entry<String, Integer> entry : mp.entrySet()) {
                 if(index==6) break;
                 TyList.add(entry.getKey());
                 CtList.add(entry.getValue());
                 index++;
             }
-            request.setAttribute("movieReList", movieReList);//将list放置到request中
-            request.setAttribute("TyList", TyList);//将list放置到request中
-            request.setAttribute("CtList", CtList);//将list放置到request中
+
+            request.setAttribute("movieReList", movieReList);//将movieReList放置到request中
+            request.setAttribute("TyList", TyList);//将类型list放置到request中
+            request.setAttribute("CtList", CtList);//将数量list放置到request中
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -121,13 +121,6 @@
                     <!-- ====== Start of Extra Nav ====== -->
                     <ul class="navbar-nav extra-nav">
 
-                        <!-- Menu Item -->
-                        <li class="nav-item">
-                            <a class="nav-link toggle-search" href="#">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </li>
-
                         <c:if test="${sessionScope.user != null}">
                             <!-- Menu Item -->
                             <li class="nav-item m-auto">
