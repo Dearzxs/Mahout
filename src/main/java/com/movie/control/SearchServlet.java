@@ -19,24 +19,29 @@ import java.util.List;
 public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String selecttype=request.getParameter("selecttype");
+        String selectType=request.getParameter("selecttype");
         String kword=request.getParameter("search-keyword");
         MovieDao dao = new MovieDao();
         List<movies> movieList;
-        if(selecttype.equals("mac")){
+        if(selectType.equals("mac")){
             PersonDao dao1=new PersonDao();
             List<person> personList=dao1.SearchPersonByName(kword);
             request.setAttribute("personList", personList);//将list放置到request中
             request.setAttribute("currPage",1);
             request.getRequestDispatcher("search-person.jsp").forward(request, response);
         }else{
-            if(selecttype.equals("mna")){
-                movieList = dao.SearchMovieByName(kword);
-            }else if(selecttype.equals("mty")){
-                movieList = dao.SearchMovieByType(kword);
+            if(selectType.equals("mna")){
+                dao.TempMovieByName(kword);
+
+            }else if(selectType.equals("mty")){
+                dao.TempMovieByType(kword);
             }else{
-                movieList = dao.SearchMovieByYear(kword);
+                dao.TempMovieByYear(kword);
             }
+
+            movieList = dao.GetTempMovie();
+            dao.CleanTempMovie();
+
             List<movies> movieList1=movieList.subList(0,10);
             request.setAttribute("movieList", movieList1);//将list放置到request中
             request.setAttribute("currPage",1);

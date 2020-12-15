@@ -6,10 +6,12 @@ import com.movie.model.person;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieDao extends BaseDao{
+public class MovieDao extends BaseDao {
+
     public List<movies> QueAllMovie(int page){
         List<movies> movieList=new ArrayList<>();
         String sql ="select * from movies order by mid limit ?,?";//分页查询的SQL语句
@@ -35,22 +37,6 @@ public class MovieDao extends BaseDao{
         }
         return movieList;
     }
-
-//    public int QueAllMovieCount() {
-//        int count = 0;//总记录数
-//        String sql = "select count(*) from movies";//查询总记录数的SQL语句
-//        try {
-//            Connection conn = dataSource.getConnection();
-//            PreparedStatement pstmt = conn.prepareStatement(sql);
-//            ResultSet rs = pstmt.executeQuery();
-//            if (rs.next()) {//光标向后移动，并判断是否有效
-//                count = rs.getInt(1);//对总记录数赋值
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return count;//返回总记录数
-//    }
 
     public movies QueOneMovie(String id){
         String sql ="select * from movies where mid=?";//分页查询的SQL语句
@@ -237,62 +223,45 @@ public class MovieDao extends BaseDao{
         return movieList;
     }
 
-
-    public List<movies> SearchMovieByName(String name){
-        List<movies> movieList=new ArrayList<>();
-        String sql ="select * from movies where name like ?";//分页查询的SQL语句
-        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1,name+"%");
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                movies movie = new movies();
-                movie.setId(rs.getString("mid"));
-                movie.setName(rs.getString("name"));
-                movie.setYear(rs.getString("year"));
-                movie.setRating(rs.getString("rating"));
-                movie.setImg(rs.getString("img"));
-                movie.setTags(rs.getString("tags"));
-                movie.setSummary(rs.getString("summary"));
-                movie.setGenre(rs.getString("genre"));
-                movie.setCountry(rs.getString("country"));
-                movieList.add(movie);//将Product对象添加到List集合中
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    public boolean TempMovieByName(String name){
+        String sql ="insert into TempMovie (select * from movies where name like ?)";
+        try {
+            Connection conn = dataSource.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,"%"+name+"%");
+            int rs = pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return movieList;
+        return true;
     }
 
-    public List<movies> SearchMovieByType(String type){
-        List<movies> movieList=new ArrayList<>();
-        String sql ="select * from movies where genre like ?";//分页查询的SQL语句
+    public boolean TempMovieByType(String type){
+        String sql ="insert into TempMovie (select * from movies where genre like ?)";//分页查询的SQL语句
         try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,type+"%");
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                movies movie = new movies();
-                movie.setId(rs.getString("mid"));
-                movie.setName(rs.getString("name"));
-                movie.setYear(rs.getString("year"));
-                movie.setRating(rs.getString("rating"));
-                movie.setImg(rs.getString("img"));
-                movie.setTags(rs.getString("tags"));
-                movie.setSummary(rs.getString("summary"));
-                movie.setGenre(rs.getString("genre"));
-                movie.setCountry(rs.getString("country"));
-                movieList.add(movie);//将movie对象添加到List集合中
-            }
+            int rs = pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return movieList;
+        return true;
     }
 
-    public List<movies> SearchMovieByYear(String year){
-        List<movies> movieList=new ArrayList<>();
-        String sql ="select * from movies where year = ?";//分页查询的SQL语句
+    public boolean TempMovieByYear(String year){
+        String sql ="insert into TempMovie (select * from movies where year = ?)";//分页查询的SQL语句
         try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,year);
+            int rs = pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public List<movies> GetTempMovie(){
+        List<movies> movieList=new ArrayList<>();
+        String sql ="select * from TempMovie";
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 movies movie = new movies();
@@ -305,14 +274,24 @@ public class MovieDao extends BaseDao{
                 movie.setSummary(rs.getString("summary"));
                 movie.setGenre(rs.getString("genre"));
                 movie.setCountry(rs.getString("country"));
-                movieList.add(movie);//将movie对象添加到List集合中
+                movieList.add(movie);
             }
+            close(conn,pstmt,rs);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return movieList;
     }
 
-
-
+    public boolean CleanTempMovie(){
+        String sql ="truncate table TempMovie;";
+        try {
+            Connection conn = dataSource.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            int rs = pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return true;
+    }
 }
