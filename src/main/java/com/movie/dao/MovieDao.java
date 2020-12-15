@@ -16,8 +16,8 @@ public class MovieDao extends BaseDao {
         List<movies> movieList=new ArrayList<>();
         String sql ="select * from movies order by mid limit ?,?";//分页查询的SQL语句
         try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, (page - 1) * movies.PAGE_SIZE);//对SQL语句第一个参数赋值
-            pstmt.setInt(2, movies.PAGE_SIZE);//对SQL语句第二个参数赋值
+            pstmt.setInt(1, (page - 1) * movies.PAGE_SIZE);
+            pstmt.setInt(2, movies.PAGE_SIZE);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 movies movie = new movies();
@@ -30,7 +30,7 @@ public class MovieDao extends BaseDao {
                 movie.setSummary(rs.getString("summary"));
                 movie.setGenre(rs.getString("genre"));
                 movie.setCountry(rs.getString("country"));
-                movieList.add(movie);//将Product对象添加到List集合中
+                movieList.add(movie);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -223,7 +223,7 @@ public class MovieDao extends BaseDao {
         return movieList;
     }
 
-    public boolean TempMovieByName(String name){
+    public void TempMovieByName(String name){
         String sql ="insert into TempMovie (select * from movies where name like ?)";
         try {
             Connection conn = dataSource.getConnection();
@@ -233,10 +233,9 @@ public class MovieDao extends BaseDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return true;
     }
 
-    public boolean TempMovieByType(String type){
+    public void TempMovieByType(String type){
         String sql ="insert into TempMovie (select * from movies where genre like ?)";//分页查询的SQL语句
         try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,type+"%");
@@ -244,10 +243,9 @@ public class MovieDao extends BaseDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
     }
 
-    public boolean TempMovieByYear(String year){
+    public void TempMovieByYear(String year){
         String sql ="insert into TempMovie (select * from movies where year = ?)";//分页查询的SQL语句
         try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,year);
@@ -255,13 +253,14 @@ public class MovieDao extends BaseDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
     }
 
-    public List<movies> GetTempMovie(){
+    public List<movies> GetTempMovie(int page){
         List<movies> movieList=new ArrayList<>();
-        String sql ="select * from TempMovie";
+        String sql ="select * from TempMovie order by mid limit ?,?";
         try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, (page - 1) * movies.PAGE_SIZE);
+            pstmt.setInt(2, movies.PAGE_SIZE);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 movies movie = new movies();
@@ -283,7 +282,7 @@ public class MovieDao extends BaseDao {
         return movieList;
     }
 
-    public boolean CleanTempMovie(){
+    public void CleanTempMovie(){
         String sql ="truncate table TempMovie;";
         try {
             Connection conn = dataSource.getConnection();
@@ -292,6 +291,5 @@ public class MovieDao extends BaseDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return true;
     }
 }

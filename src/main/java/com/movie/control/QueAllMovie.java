@@ -26,6 +26,6 @@ public class QueAllMovie extends HttpServlet {
         List<movies> movieList = dao.QueAllMovie(currPage);//查询所有电影的信息
         request.setAttribute("movieList", movieList);//将list放置到request中
         request.setAttribute("currPage",currPage);
-        request.getRequestDispatcher("movie-list.jsp").forward(request, response);//将请求转发到show.jsp页面中
+        request.getRequestDispatcher("movie-list.jsp").forward(request, response);
     }
 }

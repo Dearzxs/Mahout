@@ -19,37 +19,48 @@ import java.util.List;
 public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String selectType=request.getParameter("selecttype");
+        String selectType=request.getParameter("selectType");
         String kword=request.getParameter("search-keyword");
         MovieDao dao = new MovieDao();
         List<movies> movieList;
-        if(selectType.equals("mac")){
-            PersonDao dao1=new PersonDao();
-            List<person> personList=dao1.SearchPersonByName(kword);
+
+        if(selectType.equals("movieActor")){
+            PersonDao pdao=new PersonDao();
+            pdao.CleanTempPerson();
+            pdao.SearchPersonByName(kword);
+            List<person> personList=pdao.GetTempPerson(1);
             request.setAttribute("personList", personList);//将list放置到request中
             request.setAttribute("currPage",1);
             request.getRequestDispatcher("search-person.jsp").forward(request, response);
+
         }else{
-            if(selectType.equals("mna")){
+            dao.CleanTempMovie();
+            if(selectType.equals("movieName")){
                 dao.TempMovieByName(kword);
 
-            }else if(selectType.equals("mty")){
+            }else if(selectType.equals("movieType")){
                 dao.TempMovieByType(kword);
             }else{
                 dao.TempMovieByYear(kword);
             }
 
-            movieList = dao.GetTempMovie();
-            dao.CleanTempMovie();
+            movieList = dao.GetTempMovie(1);
 
-            List<movies> movieList1=movieList.subList(0,10);
-            request.setAttribute("movieList", movieList1);//将list放置到request中
+            request.setAttribute("movieList", movieList);//将list放置到request中
             request.setAttribute("currPage",1);
             request.getRequestDispatcher("search-movie.jsp").forward(request, response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        int currPage = 1;//当前页码
+        if (request.getParameter("page") != null) {//判断传递页面是否有效
+            currPage = Integer.parseInt(request.getParameter("page"));//对当前页码赋值
+        }
+        MovieDao dao = new MovieDao();//实例化MovieDao
+        List<movies> movieList = dao.GetTempMovie(currPage);//查询所有电影的信息
+        request.setAttribute("movieList", movieList);//将list放置到request中
+        request.setAttribute("currPage",currPage);
+        request.getRequestDispatcher("movie-list.jsp").forward(request, response);
     }
 }

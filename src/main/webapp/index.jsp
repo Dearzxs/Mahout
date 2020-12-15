@@ -201,11 +201,11 @@
 
                                 <div class="row justify-content-center">
                                     <div class="col-md-2 col-2">
-                                        <select name="selecttype">
-                                            <option value="mna">电影名称</option>
-                                            <option value="mty">电影类型</option>
-                                            <option value="mye">电影年份</option>
-                                            <option value="mac">电影演员</option>
+                                        <select name="selectType">
+                                            <option value="movieName">电影名称</option>
+                                            <option value="movieType">电影类型</option>
+                                            <option value="movieYear">电影年份</option>
+                                            <option value="movieActor">电影演员</option>
                                         </select>
                                     </div>
 

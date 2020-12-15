@@ -1,10 +1,12 @@
 package com.movie.dao;
 
+import com.movie.model.movies;
 import com.movie.model.person;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,11 +51,22 @@ public class PersonDao extends BaseDao{
         return count;//返回总记录数
     }
 
-    public List<person> SearchPersonByName(String name){
-        List<person> personList=new ArrayList<>();
-        String sql ="select * from person where name like ?";//分页查询的SQL语句
+    public void SearchPersonByName(String name){
+        String sql ="insert into TempPerson (select * from person where name like ?)";//分页查询的SQL语句
         try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,name+"%");
+            int rs = pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<person> GetTempPerson(int page){
+        List<person> personList=new ArrayList<>();
+        String sql ="select * from TempPerson order by pid limit ?,?";//分页查询的SQL语句
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, (page - 1) * movies.PAGE_SIZE);
+            pstmt.setInt(2, movies.PAGE_SIZE);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 person per = new person();
@@ -70,5 +83,16 @@ public class PersonDao extends BaseDao{
             e.printStackTrace();
         }
         return personList;
+    }
+
+    public void CleanTempPerson(){
+        String sql ="truncate table TempPerson;";
+        try {
+            Connection conn = dataSource.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            int rs = pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
