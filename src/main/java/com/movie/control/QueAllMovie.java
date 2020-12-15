@@ -23,7 +23,6 @@ public class QueAllMovie extends HttpServlet {
             currPage = Integer.parseInt(request.getParameter("page"));//对当前页码赋值
         }
         MovieDao dao = new MovieDao();//实例化MovieDao
-        int i=dao.QueAllMovieCount();
         List<movies> movieList = dao.QueAllMovie(currPage);//查询所有电影的信息
         request.setAttribute("movieList", movieList);//将list放置到request中
         request.setAttribute("currPage",currPage);

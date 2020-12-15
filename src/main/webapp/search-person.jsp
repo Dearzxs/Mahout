@@ -173,9 +173,10 @@
                                 <li><a href="QueAllPerson?page=${requestScope.currPage-1}"><i class="ti-angle-left"></i></a></li>
                             </c:if>
                             <li><a href="QueAllPerson?page=${requestScope.currPage}" class="current-page">${requestScope.currPage}</a></li>
-                            <li><a href="QueAllPerson?page=${requestScope.currPage+1}">${requestScope.currPage+1}</a></li>
-                            <li><a href="QueAllPerson?page=${requestScope.currPage+2}">${requestScope.currPage+2}</a></li>
-                            <li><a href="QueAllPerson?page=${requestScope.currPage+1}"><i class="ti-angle-right"></i></a></li>
+                            <c:if test="${requestScope.currPage<requestScope.maxPage}">
+                                <li><a href="QueAllPerson?page=${requestScope.currPage+1}">${requestScope.currPage+1}</a></li>
+                                <li><a href="QueAllPerson?page=${requestScope.currPage+1}"><i class="ti-angle-right"></i></a></li>
+                            </c:if>
                         </ul>
                     </nav>
                 </div>

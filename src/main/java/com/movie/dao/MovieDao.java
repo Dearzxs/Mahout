@@ -38,9 +38,9 @@ public class MovieDao extends BaseDao {
         return movieList;
     }
 
-    public int QueAllMovieCount() {
+    public int TempMovieCount() {
         int count = 0;//总记录数
-        String sql = "select count(*) from movies";//查询总记录数的SQL语句
+        String sql = "select count(*) from TempMovie";//查询总记录数的SQL语句
         try {
             Connection conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);

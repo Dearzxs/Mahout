@@ -29,8 +29,11 @@ public class SearchServlet extends HttpServlet {
             pdao.CleanTempPerson();
             pdao.SearchPersonByName(kword);
             List<person> personList=pdao.GetTempPerson(1);
+            int TempPersonCount= pdao.QueTempPersonCount();
+            int maxPage=TempPersonCount/person.PAGE_SIZE+1;
             request.setAttribute("personList", personList);
             request.setAttribute("currPage",1);
+            request.setAttribute("maxPage",maxPage);
             request.getRequestDispatcher("search-person.jsp").forward(request, response);
 
         }else{
@@ -46,8 +49,11 @@ public class SearchServlet extends HttpServlet {
 
             movieList = dao.GetTempMovie(1);
 
+            int TempMovieCount=dao.TempMovieCount();
+            int maxPage=TempMovieCount/movies.PAGE_SIZE+1;
             request.setAttribute("movieList", movieList);//将list放置到request中
             request.setAttribute("currPage",1);
+            request.setAttribute("maxPage",maxPage);
             request.getRequestDispatcher("search-movie.jsp").forward(request, response);
         }
     }

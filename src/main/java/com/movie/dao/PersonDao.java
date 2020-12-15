@@ -35,9 +35,9 @@ public class PersonDao extends BaseDao{
         return personList;
     }
 
-    public int QueAllPersonCount() {
+    public int QueTempPersonCount() {
         int count = 0;//总记录数
-        String sql = "select count(*) from person";//查询总记录数的SQL语句
+        String sql = "select count(*) from TempPerson";//查询总记录数的SQL语句
         try {
             Connection conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);
