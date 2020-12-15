@@ -95,4 +95,64 @@ public class PersonDao extends BaseDao{
             throwables.printStackTrace();
         }
     }
+
+    public person QueOnePerson(String id){
+        person per = new person();
+        String sql ="select * from person where pid=?";//分页查询的SQL语句
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                per.setId(rs.getString("pid"));
+                per.setName(rs.getString("name"));
+                per.setImg(rs.getString("img"));
+                per.setSex(rs.getString("sex"));
+                per.setBirthday(rs.getString("birthday"));
+                per.setBirthplace(rs.getString("birthplace"));
+                per.setSummary(rs.getString("summary"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return per;
+    }
+
+    public List<movies> ActingFilmsList(String pid){
+        List<String> mList=new ArrayList<>();
+        String sql1 ="select movie_id from relationships where person_id=?";
+        try (Connection conn1 = dataSource.getConnection(); PreparedStatement pstmt1 = conn1.prepareStatement(sql1)) {
+            pstmt1.setString(1, pid);//对SQL语句第一个参数赋值
+            ResultSet rs1 = pstmt1.executeQuery();
+            while (rs1.next()) {
+                mList.add(rs1.getString("movie_id"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        List<movies> movieList=new ArrayList<>();
+        String sql2 ="select * from movies where mid in (?,?,?,?,?,?)";
+        try (Connection conn2 = dataSource.getConnection(); PreparedStatement pstmt2 = conn2.prepareStatement(sql2)) {
+            for (int i = 0; i < 6; i++) {
+                pstmt2.setInt(i+1, Integer.parseInt(mList.get(i)));//对SQL语句第一个参数赋值
+            }
+            ResultSet rs2 = pstmt2.executeQuery();
+            while (rs2.next()) {
+                movies movie = new movies();
+                movie.setId(rs2.getString("mid"));
+                movie.setName(rs2.getString("name"));
+                movie.setYear(rs2.getString("year"));
+                movie.setRating(rs2.getString("rating"));
+                movie.setImg(rs2.getString("img"));
+                movie.setTags(rs2.getString("tags"));
+                movie.setSummary(rs2.getString("summary"));
+                movie.setGenre(rs2.getString("genre"));
+                movie.setCountry(rs2.getString("country"));
+                movieList.add(movie);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movieList;
+    }
 }

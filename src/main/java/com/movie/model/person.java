@@ -2,6 +2,7 @@ package com.movie.model;
 
 public class person {
     public static final int PAGE_SIZE = 10;//每页记录数
+    public static final int PERSON_COUNT_SIZE = 127759;//总记录数
     private String id;
     private String name;
     private String img;

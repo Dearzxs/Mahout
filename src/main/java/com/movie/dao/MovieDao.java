@@ -38,6 +38,22 @@ public class MovieDao extends BaseDao {
         return movieList;
     }
 
+    public int QueAllMovieCount() {
+        int count = 0;//总记录数
+        String sql = "select count(*) from movies";//查询总记录数的SQL语句
+        try {
+            Connection conn = dataSource.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {//光标向后移动，并判断是否有效
+                count = rs.getInt(1);//对总记录数赋值
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;//返回总记录数
+    }
+
     public movies QueOneMovie(String id){
         String sql ="select * from movies where mid=?";//分页查询的SQL语句
         movies movie = new movies();
@@ -80,7 +96,7 @@ public class MovieDao extends BaseDao {
         String sql2 ="select * from movies where mid in (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";//分页查询的SQL语句
         try (Connection conn2 = dataSource.getConnection(); PreparedStatement pstmt2 = conn2.prepareStatement(sql2)) {
             for (int i = 0; i < mList.size(); i++) {
-                pstmt2.setInt(i+1, Integer.parseInt(s.get(i)));//对SQL语句第一个参数赋值
+                pstmt2.setInt(i+1, Integer.parseInt(mList.get(i)));//对SQL语句第一个参数赋值
             }
             ResultSet rs2 = pstmt2.executeQuery();
             while (rs2.next()) {
@@ -122,7 +138,7 @@ public class MovieDao extends BaseDao {
         String sql2 ="select * from movies where mid in (?,?,?,?)";//分页查询的SQL语句
         try (Connection conn2 = dataSource.getConnection(); PreparedStatement pstmt2 = conn2.prepareStatement(sql2)) {
             for (int i = 0; i < mList.size(); i++) {
-                pstmt2.setInt(i+1, Integer.parseInt(s.get(i)));//对SQL语句第一个参数赋值
+                pstmt2.setInt(i+1, Integer.parseInt(mList.get(i)));//对SQL语句第一个参数赋值
             }
             ResultSet rs2 = pstmt2.executeQuery();
             while (rs2.next()) {
@@ -186,7 +202,7 @@ public class MovieDao extends BaseDao {
 
     public List<movies> MovieHistoryList(String uname){
         List<String> mList=new ArrayList<>();
-        String sql1 ="select mid from NewusrRate where uname=?";//待优化，可用临时表
+        String sql1 ="select mid from NewusrRate where uname=?";
         try (Connection conn1 = dataSource.getConnection(); PreparedStatement pstmt1 = conn1.prepareStatement(sql1)) {
             pstmt1.setString(1, uname);//对SQL语句第一个参数赋值
             ResultSet rs1 = pstmt1.executeQuery();

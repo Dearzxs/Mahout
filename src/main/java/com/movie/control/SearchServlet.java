@@ -29,7 +29,7 @@ public class SearchServlet extends HttpServlet {
             pdao.CleanTempPerson();
             pdao.SearchPersonByName(kword);
             List<person> personList=pdao.GetTempPerson(1);
-            request.setAttribute("personList", personList);//将list放置到request中
+            request.setAttribute("personList", personList);
             request.setAttribute("currPage",1);
             request.getRequestDispatcher("search-person.jsp").forward(request, response);
 

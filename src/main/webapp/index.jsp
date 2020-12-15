@@ -156,7 +156,6 @@
             <!-- Start REVOLUTION SLIDER 5.4.1 fullwidth mode -->
             <div id="hero-slider" class="rev_slider fullwidthabanner" style="display:none" data-version="5.4.1">
                 <ul>
-
                     <!-- ===== SLIDE NR. 1 ===== -->
                     <li data-transition="fade">
                         <!-- MAIN IMAGE -->
@@ -253,13 +252,11 @@
                             <img src="assets/images/other/banner-arrow.png" alt="">
                         </div>
                     </li>
-
                 </ul>
             </div>
             <!-- End REVOLUTION SLIDER 5.4.1 fullwidth mode -->
         </div>
         <!-- ===== END OF REV SLIDER WRAPPER ===== -->
-
     </section>
     <!-- =============== START OF SLIDER REVOLUTION SECTION =============== -->
 
@@ -985,12 +982,12 @@
                 <p class="status"></p>
 
                 <div class="form-group">
-                    <label for="username">用户名 *</label>
+                    <label for="username">用户名</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名*" />
                 </div>
 
                 <div class="form-group">
-                    <label for="password">密码 *</label>
+                    <label for="password">密码</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码*" />
                 </div>
 
@@ -1079,7 +1076,7 @@
                 <p class="status"></p>
 
                 <div class="form-group">
-                    <label for="password">邮箱地址 *</label>
+                    <label for="password">邮箱地址</label>
                     <input type="email" name="user_login" class="form-control" id="email3" placeholder="邮箱地址 *" />
                 </div>
 

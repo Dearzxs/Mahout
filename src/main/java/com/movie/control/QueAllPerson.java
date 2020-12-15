@@ -26,6 +26,6 @@ public class QueAllPerson extends HttpServlet {
         List<person> personList = dao.QueAllPerson(currPage);//查询所有演员的信息
         request.setAttribute("personList", personList);//将list放置到request中
         request.setAttribute("currPage",currPage);
-        request.getRequestDispatcher("celebrities-list.jsp").forward(request, response);//将请求转发到show.jsp页面中
+        request.getRequestDispatcher("actorList.jsp").forward(request, response);//将请求转发到show.jsp页面中
     }
 }

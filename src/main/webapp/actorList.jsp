@@ -146,14 +146,14 @@
                             <div class="celeb-container">
                                 <!-- Celebrity Image -->
                                 <div class="celebrity-image">
-                                    <a href="celebrity-detail.jsp">
+                                    <a href="actorDetail.jsp">
                                         <img src="${item.img}" alt="">
                                     </a>
                                 </div>
                                 <!-- Celebrity Content -->
                                 <div class="celebrity-content">
                                     <div class="inner">
-                                        <h3 class="title"><a href="celebrity-detail.jsp">${item.name}</a></h3>
+                                        <h3 class="title"><a href="ActorDetailsServlet?id=${item.id}">${item.name}</a></h3>
                                         <p style="display: -webkit-box;-webkit-line-clamp:3;-webkit-box-orient: vertical;overflow: hidden;">${item.summary}.</p>
                                     </div>
                                 </div>

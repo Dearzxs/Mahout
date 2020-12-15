@@ -6,9 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<!DOCTYPE html>
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="no-referrer">
@@ -91,7 +92,7 @@
                     <ul class="navbar-nav mx-auto" id="main-menu">
                         <!-- Menu Item -->
                         <li class="nav-item">
-                            <a class="nav-link" href="celebrities-list.jsp">演员表</a>
+                            <a class="nav-link" href="actorList.jsp">演员表</a>
                         </li>
                         <!-- Menu Item -->
                         <li class="nav-item">
@@ -102,13 +103,6 @@
 
                     <!-- ====== Start of Extra Nav ====== -->
                     <ul class="navbar-nav extra-nav">
-                        <!-- Menu Item -->
-                        <li class="nav-item">
-                            <a class="nav-link toggle-search" href="#">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </li>
-
                         <!-- Menu Item -->
                         <li class="nav-item m-auto">
                             <a href="" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
@@ -136,48 +130,42 @@
             <div class="row">
                 <div class="col-md-4 col-12">
                     <div class="celeb-img">
-                        <img src="assets/images/celebrities/celebrity2a.jpg" alt="">
+                        <img src="${requestScope.personDetails.img}" alt="">
                     </div>
                 </div>
                 <div class="col-md-8 col-12">
                     <div class="celeb-details">
-                        <h3 class="title">Baron Saul</h3>
+                        <h3 class="title">${requestScope.personDetails.name}</h3>
                         <span class="profession">Actor</span>
                         <!-- tab links -->
                         <ul class="nav tab-links">
                             <li class="nav-item">
-                                <a class="nav-link active" id="bio-tab" data-toggle="tab" href="#bio" aria-controls="bio" aria-expanded="false">biography</a>
+                                <a class="nav-link active" id="bio-tab" data-toggle="tab" href="#bio" aria-controls="bio" aria-expanded="false">个人简介</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="film-tab" data-toggle="tab" href="#filmography" aria-controls="filmography" aria-expanded="false">filmography</a>
+                                <a class="nav-link" id="film-tab" data-toggle="tab" href="#filmography" aria-controls="filmography" aria-expanded="false">参演电影</a>
                             </li>
                         </ul>
                         <!-- Tab Content -->
                         <div class="tab-content mt70">
                             <div class="tab-pane fade active show" id="bio" role="tabpanel" aria-labelledby="bio-tab" aria-expanded="false">
                                 <div class="bio-description">
-                                    <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. Cras suscipit, quam vitae adipiscing faucibus, risus nibh laoreet odio, a porttitor metus eros ut enim. Morbi augue velit, tempus mattis dignissim nec, porta sed risus. Donec eget magna eu lorem tristique pellentesque eget eu dui. Fusce lacinia tempor malesuada. Ut lacus sapien, placerat a ornare nec, elementum sit amet felis. Maecenas pretium lorem hendrerit eros sagittis fermentum.</p>
-                                    <p>Phasellus enim magna, varius et commodo ut, ultricies vitae velit. Ut nulla tellus, eleifend euismod pellentesque vel, sagittis vel justo. In libero urna, venenatis sit amet ornare non, suscipit nec risus. Sed consequat justo non mauris pretium at tempor justo sodales. Quisque tincidunt laoreet malesuada. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae ante enim. Fusce sed elit est. Suspendisse sit amet mauris in quam pretium faucibus et aliquam odio.</p>
+                                    <p>${requestScope.personDetails.summary}</p>
                                 </div>
                                 <div class="bio-details">
                                     <ul class="bio-wrapper">
-                                        <li><h6>Date of Birth:</h6> 07.03.2018</li>
-                                        <li><h6>Gender:</h6> Male</li>
-                                        <li><h6>Height:</h6> 1.83m</li>
-                                        <li><h6>Country:</h6> USA</li>
+                                        <li><h6>Date of Birth:</h6> ${requestScope.personDetails.birthday}</li>
+                                        <li><h6>Gender:</h6> ${requestScope.personDetails.sex}</li>
+                                        <li><h6>Birthplace:</h6> ${requestScope.personDetails.birthplace}</li>
                                     </ul>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="tab-pane fade" id="filmography" role="tabpanel" aria-labelledby="film-tab" aria-expanded="false">
                                 <ul class="film-list">
-                                    <li><a href="#">Black Cage</a><span class="year">2017</span></li>
-                                    <li><a href="#">Find Me </a><span class="year">2016</span></li>
-                                    <li><a href="#">The 19th Life</a><span class="year">2016</span></li>
-                                    <li><a href="#">Central Hit </a><span class="year">2016</span></li>
-                                    <li><a href="#">Triple 7 </a><span class="year">2015</span></li>
-                                    <li><a href="#">Need for Space </a><span class="year">2014</span></li>
-                                    <li><a href="#">Breaking Mad </a><span class="year">2008-2013</span></li>
+                                    <c:forEach items="${requestScope.actingFilms}" var="item">
+                                        <li><a href="ShowMovieDetails?id=${item.id}">${item.name}</a><span class="year">${item.year}</span></li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>
@@ -217,15 +205,6 @@
     <!-- =============== END OF FOOTER =============== -->
 </div>
 <!-- =============== END OF WRAPPER =============== -->
-
-<!-- =============== START OF GENERAL SEARCH WRAPPER =============== -->
-<div class="general-search-wrapper">
-    <form class="general-search" role="search" method="get" action="#">
-        <input type="text" placeholder="Type and hit enter...">
-        <span id="general-search-close" class="ti-close toggle-search"></span>
-    </form>
-</div>
-<!-- =============== END OF GENERAL SEARCH WRAPPER =============== -->
 
 <!-- ===== Start of Back to Top Button ===== -->
 <div id="backtotop">
