@@ -99,7 +99,19 @@
                     <!-- ====== End of Main Menu ====== -->
 
                     <!-- ====== Start of Extra Nav ====== -->
-                    <ul class="navbar-nav extra-nav"></ul>
+                    <ul class="navbar-nav extra-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.user.userName}</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="nav-link" href="PersonServlet">个人中心</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">退出登录</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                     <!-- ====== End of Extra Nav ====== -->
                 </div>
                 <!-- ====== End of #main-nav ====== -->

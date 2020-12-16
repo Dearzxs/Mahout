@@ -73,83 +73,316 @@
 
 <!-- =============== START OF WRAPPER =============== -->
 <div class="wrapper">
+    <!-- =============== START OF HEADER NAVIGATION =============== -->
+    <!-- Insert the class "sticky" in the header if you want a sticky header -->
+    <header class="header">
+        <div class="container-fluid">
+            <!-- ====== Start of Navbar ====== -->
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="index.jsp">
+                    <!-- INSERT YOUR LOGO HERE -->
+                    <img src="assets/images/logo.svg" alt="logo" width="150" class="logo">
+                    <!-- INSERT YOUR WHITE LOGO HERE -->
+                    <img src="assets/images/logo-white.svg" alt="white logo" width="150" class="logo-white">
+                </a>
+
+                <button id="mobile-nav-toggler" class="hamburger hamburger--collapse" type="button">
+                       <span class="hamburger-box">
+                          <span class="hamburger-inner"></span>
+                       </span>
+                </button>
+                <!-- ====== Start of #main-nav ====== -->
+                <div class="navbar-collapse" id="main-nav">
+                    <!-- ====== Start of Main Menu ====== -->
+                    <ul class="navbar-nav mx-auto" id="main-menu">
+
+                        <!-- Menu Item -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="personal-homepage.jsp">联系我们</a>
+                        </li>
+                    </ul>
+                    <!-- ====== End of Main Menu ====== -->
+
+                    <!-- ====== Start of Extra Nav ====== -->
+                    <ul class="navbar-nav extra-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.user.userName}</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="nav-link" href="PersonServlet">个人中心</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">退出登录</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- ====== End of Extra Nav ====== -->
+                </div>
+                <!-- ====== End of #main-nav ====== -->
+            </nav>
+            <!-- ====== End of Navbar ====== -->
+        </div>
+    </header>
+    <!-- =============== END OF HEADER NAVIGATION =============== -->
 
     <!-- =============== START OF PAGE HEADER =============== -->
     <section class="page-header overlay-gradient" style="background: url(assets/images/posters/movie-collection.jpg);">
         <div class="container">
             <div class="inner">
-                <h2 class="title">个人主页</h2>
+                <h2 class="title">用户中心</h2>
                 <ol class="breadcrumb">
                     <li><a href="index.jsp">主页</a></li>
-                    <li>个人主页</li>
+                    <li>用户中心</li>
                 </ol>
             </div>
         </div>
     </section>
     <!-- =============== END OF PAGE HEADER =============== -->
-    <div style="text-align:center;">
-        <div style="height: 40px"></div>
-        <div id="main1" style="width: 600px;height:480px;display:inline-block;"></div>
-        <script type="text/javascript">
-            // 基于准备好的dom，初始化echarts实例
-            var myChart = echarts.init(document.getElementById('main1'));
 
-            // 指定图表的配置项和数据
-            var option = {
-                title: {
-                    text: '观影历史',
-                    left:'center'
-                },
-                tooltip: {},
-                legend: {
-                    left:'center',
-                    top:'bottom',
-                    data: ['电影类型（Film Type）']
-                },
-                radar: {
-                    // shape: 'circle',
-                    name: {
-                        textStyle: {
-                            color: '#fff',
-                            backgroundColor: '#999',
-                            borderRadius: 3,
-                            padding: [3, 5]
-                        }
-                    },
-                    indicator: [
-                        { name: '${requestScope.TList[0]}', max: ${requestScope.CList[0]}},
-                        { name: '${requestScope.TList[1]}', max: ${requestScope.CList[0]}},
-                        { name: '${requestScope.TList[2]}', max: ${requestScope.CList[0]}},
-                        { name: '${requestScope.TList[3]}', max: ${requestScope.CList[0]}},
-                        { name: '${requestScope.TList[4]}', max: ${requestScope.CList[0]}},
-                        { name: '${requestScope.TList[5]}', max: ${requestScope.CList[0]}}
-                    ]
-                },
-                series: [{
-                    name: '电影分布（Film Distribution）',
-                    type: 'radar',
-                    // areaStyle: {normal: {}},
-                    data: [
-                        {
-                            value: [${requestScope.CList[0]}, ${requestScope.CList[1]}, ${requestScope.CList[2]}, ${requestScope.CList[3]}, ${requestScope.CList[4]}, ${requestScope.CList[5]}],
-                            name: '电影分布（Film Distribution）'
-                        }
-                    ]
-                }]
-            };
-            // 使用刚指定的配置项和数据显示图表。
-            myChart.setOption(option);
-        </script>
-    </div>
+
     <!-- =============== START OF MAIN =============== -->
     <main class="contact-page ptb100">
         <div class="container">
             <div class="row">
+                <div style="text-align:center;">
+                    <div style="height: 50px"></div>
+                    <div id="main0" style="width: 450px;height:500px;display:inline-block;"></div>
+                    <div style="height: 50px"></div>
+                </div>
+                <script type="text/javascript">
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main0'));
+
+                    // 指定图表的配置项和数据
+                    var option = {
+                        title: {
+                            text: '电影年代信息统计',
+                            subtext: '',
+                            left: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{a} <br/>{b} : {c} ({d}%)'
+                        },
+                        legend: {
+                            left: 'center',
+                            top: 'bottom',
+                            data: ['2011-2020', '2001-2010', '1991-2000', '1981-1990', '1971-1980', '1961-1970', '1951-1960', '1950之前']
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                mark: {show: true},
+                                dataView: {show: true, readOnly: false},
+                                magicType: {
+                                    show: true,
+                                    type: ['pie', 'funnel']
+                                },
+                                restore: {show: true},
+                                saveAsImage: {show: true}
+                            }
+                        },
+                        series: [
+                            {
+                                name: '年代占比',
+                                type: 'pie',
+                                radius: [35, 130],
+                                center: ['50%', '50%'],
+                                roseType: 'radius',
+                                data: [
+                                    {value: 10, name: '2011-2020'},
+                                    {value: 5, name: '2001-2010'},
+                                    {value: 15, name: '1991-2000'},
+                                    {value: 25, name: '1981-1990'},
+                                    {value: 20, name: '1971-1980'},
+                                    {value: 35, name: '1961-1970'},
+                                    {value: 30, name: '1951-1960'},
+                                    {value: 40, name: '1950之前'}
+                                ]
+                            }
+                        ]
+                    };
+
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                </script>
+            </div>
+            <div class="row">
+                <div style="text-align:center;">
+                    <div style="height: 50px"></div>
+                    <div id="main1" style="width: 450px;height:500px;display:inline-block;"></div>
+                    <div id="main2" style="width: 450px;height:500px;display:inline-block;"></div>
+                    <div style="height: 50px"></div>
+                </div>
+                <script type="text/javascript">
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main1'));
+
+                    // 指定图表的配置项和数据
+                    var option = {
+                        tooltip: {
+                            formatter: '{a} <br/>{b} : {c}%'
+                        },
+                        toolbox: {
+                            feature: {
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        series: [
+                            {
+                                min:'0',
+                                max:'10',
+                                name: '业务指标',
+                                type: 'gauge',
+                                detail: {formatter: '{value}'},
+                                data: [{value: 5, name: '连续登录天数'}]
+                            }
+                        ]
+                    };
+
+                    var graphData = [
+                        [
+                            // Consider timeoffset, add two days to avoid overflow.
+                            1485878400000 + 3600 * 24 * 1000 * 2 + 94608000000,
+                            260
+                        ],
+                        [
+                            1486137600000 + 94608000000,
+                            200
+                        ],
+                        [
+                            1486569600000 + 94608000000,
+                            279
+                        ],
+                        [
+                            1486915200000 + 94608000000,
+                            847
+                        ],
+                        [
+                            1487347200000 + 94608000000,
+                            241
+                        ],
+                        [
+                            1487779200000 + 3600 * 24 * 1000 * 15 + 94608000000,
+                            411
+                        ],
+                        [
+                            1488124800000 + 3600 * 24 * 1000 * 23 + 94608000000,
+                            985
+                        ]
+                    ];
+
+                    var links = graphData.map(function (item, idx) {
+                        return {
+                            source: idx,
+                            target: idx + 1
+                        };
+                    });
+
+                    links.pop();
+
+                    function getVirtulData(year) {
+                        year = year || '2017';
+                        var date = +echarts.number.parseDate(year + '-01-01');
+                        var end = +echarts.number.parseDate((+year + 1) + '-01-01');
+                        var dayTime = 3600 * 24 * 1000;
+                        var data = [];
+                        for (var time = date; time < end; time += dayTime) {
+                            data.push([
+                                echarts.format.formatTime('yyyy-MM-dd', time),
+                                Math.floor(Math.random() * 1000)
+                            ]);
+                        }
+                        return data;
+                    }
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                </script>
+                <script type="text/javascript">
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main2'));
+
+                    // 指定图表的配置项和数据
+                    var option = {
+                        tooltip: {},
+                        calendar: {
+                            top: 'middle',
+                            left: 'center',
+                            orient: 'vertical',
+                            cellSize: 40,
+                            yearLabel: {
+                                margin: 50,
+                                textStyle: {
+                                    fontSize: 30
+                                }
+                            },
+                            dayLabel: {
+                                firstDay: 1,
+                                nameMap: 'cn'
+                            },
+                            monthLabel: {
+                                nameMap: 'cn',
+                                margin: 15,
+                                textStyle: {
+                                    fontSize: 20,
+                                    color: '#999'
+                                }
+                            },
+                            range: ['2020-02', '2020-03-31']
+                        },
+                        visualMap: {
+                            min: 0,
+                            max: 1000,
+                            type: 'piecewise',
+                            left: 'center',
+                            bottom: 20,
+                            inRange: {
+                                color: ['#5291FF', '#C7DBFF']
+                            },
+                            seriesIndex: [1],
+                            orient: 'horizontal'
+                        },
+                        series: [{
+                            type: 'graph',
+                            edgeSymbol: ['none', 'arrow'],
+                            coordinateSystem: 'calendar',
+                            links: links,
+                            symbolSize: 15,
+                            calendarIndex: 0,
+                            itemStyle: {
+                                color: 'yellow',
+                                shadowBlue: 9,
+                                shadowOffsetX: 1.5,
+                                shadowOffsetY: 3,
+                                shadowColor: '#555'
+                            },
+                            lineStyle: {
+                                color: '#D10E00',
+                                width: 1,
+                                opacity: 1
+                            },
+                            data: graphData,
+                            z: 20
+                        }, {
+                            type: 'heatmap',
+                            coordinateSystem: 'calendar',
+                            data: getVirtulData(2020)
+                        }]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                </script>
+
                 <!-- Start of Contact Details -->
                 <div class="col-md-4 col-sm-12">
-                    <h3 class="title">Info</h3>
+                    <h3 class="title">详细信息</h3>
                     <div class="details-wrapper">
-                        <p>${sessionScope.user.userName}</p>
+                        <p>用户名:${sessionScope.user.userName}</p>
                         <ul class="contact-details">
                             <li>
                                 <i class="icon-phone"></i>

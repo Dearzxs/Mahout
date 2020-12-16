@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page isELIgnored="false"%>
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="no-referrer">
-    <!-- ===== Mobile viewport optimized ===== -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
 
-    <!-- ===== Meta Tags - Description for Search Engine purposes ===== -->
     <meta name="description" content="Movify - Movies, Series & Cinema HTML Template">
     <meta name="keywords" content="movies, series, online streaming, html template, cinema html template">
     <meta name="author" content="GnoDesign">
 
-    <!-- ===== Website Title ===== -->
     <title>Movify电影推荐系统</title>
 
-    <!-- ===== Favicon & Different size apple touch icons ===== -->
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="57x57" href="assets/images/apple-touch-icon-iphone.png">
     <link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-touch-icon-ipad.png">
@@ -30,10 +26,8 @@
     <link rel="icon" sizes="192x192" href="assets/images/icon-hd.png">
     <link rel="icon" sizes="128x128" href="assets/images/icon.png">
 
-    <!-- ===== Google Fonts ===== -->
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 
-    <!-- ===== CSS links ===== -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/revolution/css/settings.css">
     <link rel="stylesheet" type="text/css" href="assets/revolution/css/layers.css">
@@ -106,31 +100,27 @@
 
                         <!-- Menu Item -->
                         <li class="nav-item">
-                            <a class="nav-link" href="Recommender">偏好</a>
-                        </li>
-
-                        <!-- Menu Item -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="PersonServlet">个人中心</a>
+                            <a class="nav-link" href="Recommender">推荐电影</a>
                         </li>
 
                     </ul>
                     <!-- ====== End of Main Menu ====== -->
 
-
-                    <!-- ====== Start of Extra Nav ====== -->
                     <ul class="navbar-nav extra-nav">
-
                         <c:if test="${sessionScope.user != null}">
-                            <!-- Menu Item -->
-                            <li class="nav-item m-auto">
-                                <a href="#" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
-                                    <i class="icon-user"></i>${sessionScope.user.userName}
-                                </a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.user.userName}</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="nav-link" href="PersonServlet">个人中心</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">退出登录</a>
+                                    </li>
+                                </ul>
                             </li>
                         </c:if>
                         <c:if test="${sessionScope.user == null}">
-                            <!-- Menu Item -->
                             <li class="nav-item m-auto">
                                 <a href="#login-register-popup" class="btn btn-main btn-effect login-btn popup-with-zoom-anim">
                                     <i class="icon-user"></i>登录
@@ -138,7 +128,6 @@
                             </li>
                         </c:if>
                     </ul>
-                    <!-- ====== End of Extra Nav ====== -->
 
                 </div>
                 <!-- ====== End of #main-nav ====== -->
@@ -210,8 +199,10 @@
 
                                     <div class="col-md-8 col-sm-10 col-12">
                                         <div class="form-group">
-                                            <input name="search-keyword" type="text" id="search-keyword" value="" class="form-control" placeholder="请输入你想要了解的">
-                                            <button type="submit" class="btn btn-main btn-effect"><i class="fa fa-search"></i></button>
+                                            <input name="search-keyword" type="text" id="search-keyword" value=""
+                                                   class="form-control" placeholder="请输入你想要了解的">
+                                            <button type="submit" class="btn btn-main btn-effect"><i
+                                                    class="fa fa-search"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -275,11 +266,13 @@
 
                                 <!-- Buttons -->
                                 <div class="buttons">
-                                    <a href="#" data-original-title="Rate" data-toggle="tooltip" data-placement="bottom" class="like">
+                                    <a href="#" data-original-title="Rate" data-toggle="tooltip" data-placement="bottom"
+                                       class="like">
                                         <i class="icon-heart"></i>
                                     </a>
 
-                                    <a href="#" data-original-title="Share" data-toggle="tooltip" data-placement="bottom" class="share">
+                                    <a href="#" data-original-title="Share" data-toggle="tooltip"
+                                       data-placement="bottom" class="share">
                                         <i class="icon-share"></i>
                                     </a>
                                 </div>
@@ -296,7 +289,8 @@
                                 </div>
 
                                 <!-- Image -->
-                                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2006533765.webp" alt="">
+                                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2006533765.webp"
+                                     alt="">
 
                             </div>
 
@@ -323,11 +317,13 @@
 
                                 <!-- Buttons -->
                                 <div class="buttons">
-                                    <a href="#" data-original-title="Rate" data-toggle="tooltip" data-placement="bottom" class="like">
+                                    <a href="#" data-original-title="Rate" data-toggle="tooltip" data-placement="bottom"
+                                       class="like">
                                         <i class="icon-heart"></i>
                                     </a>
 
-                                    <a href="#" data-original-title="Share" data-toggle="tooltip" data-placement="bottom" class="share">
+                                    <a href="#" data-original-title="Share" data-toggle="tooltip"
+                                       data-placement="bottom" class="share">
                                         <i class="icon-share"></i>
                                     </a>
                                 </div>
@@ -344,7 +340,8 @@
                                 </div>
 
                                 <!-- Image -->
-                                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2397258764.webp" alt="">
+                                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2397258764.webp"
+                                     alt="">
                             </div>
 
                             <!-- Movie List Content -->
@@ -370,11 +367,13 @@
 
                                 <!-- Buttons -->
                                 <div class="buttons">
-                                    <a href="#" data-original-title="Rate" data-toggle="tooltip" data-placement="bottom" class="like">
+                                    <a href="#" data-original-title="Rate" data-toggle="tooltip" data-placement="bottom"
+                                       class="like">
                                         <i class="icon-heart"></i>
                                     </a>
 
-                                    <a href="#" data-original-title="Share" data-toggle="tooltip" data-placement="bottom" class="share">
+                                    <a href="#" data-original-title="Share" data-toggle="tooltip"
+                                       data-placement="bottom" class="share">
                                         <i class="icon-share"></i>
                                     </a>
                                 </div>
@@ -391,7 +390,8 @@
                                 </div>
 
                                 <!-- Image -->
-                                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p480747492.webp" alt="">
+                                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p480747492.webp"
+                                     alt="">
                             </div>
 
                             <!-- Movie List Content -->
@@ -417,11 +417,13 @@
 
                                 <!-- Buttons -->
                                 <div class="buttons">
-                                    <a href="#" data-original-title="Rate" data-toggle="tooltip" data-placement="bottom" class="like">
+                                    <a href="#" data-original-title="Rate" data-toggle="tooltip" data-placement="bottom"
+                                       class="like">
                                         <i class="icon-heart"></i>
                                     </a>
 
-                                    <a href="#" data-original-title="Share" data-toggle="tooltip" data-placement="bottom" class="share">
+                                    <a href="#" data-original-title="Share" data-toggle="tooltip"
+                                       data-placement="bottom" class="share">
                                         <i class="icon-share"></i>
                                     </a>
                                 </div>
@@ -438,7 +440,8 @@
                                 </div>
 
                                 <!-- Image -->
-                                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2354179225.webp" alt="">
+                                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2354179225.webp"
+                                     alt="">
                             </div>
 
                             <!-- Movie List Content -->
@@ -598,7 +601,7 @@
                             type: 'pie',
                             radius: [35, 130],
                             center: ['50%', '50%'],
-                            roseType: 'area',
+                            roseType: 'pie',
                             data: [
                                 {value: 10, name: '2011-2020'},
                                 {value: 5, name: '2001-2010'},
@@ -630,19 +633,19 @@
                     },
                     xAxis: {
                         type: 'category',
-                        data:  ['英国', '美国', '日国', '德国', '中国', '加拿大', '澳洲']
+                        data: ['英国', '美国', '日国', '德国', '中国', '加拿大', '澳洲']
                     },
                     yAxis: {
                         type: 'value'
                     },
                     series: [{
-                        data: [85,84,27,13,13,3,3],
+                        data: [85, 84, 27, 13, 13, 3, 3],
                         type: 'bar',
-                        legendHoverLink:true,
-                        label:{show:true,},
+                        legendHoverLink: true,
+                        label: {show: true,},
                         showBackground: false,
                         color: 'rgba(148,0,211,0.8)',
-                        barWidth:'20'
+                        barWidth: '20'
                     }]
                 };
 
@@ -708,7 +711,8 @@
                         <!-- Movie List Image -->
                         <div class="listing-image">
                             <!-- Image -->
-                            <img src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2516578307.webp" alt="">
+                            <img src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2516578307.webp"
+                                 alt="">
                         </div>
 
                         <!-- Movie List Content -->
@@ -733,7 +737,8 @@
                                     </div>
                                 </div>
 
-                                <p>故事发生在2045年，虚拟现实技术已经渗透到了人类生活的每一个角落。詹姆斯哈利迪（马克·里朗斯 Mark Rylance 饰）一手建造了名为“绿洲”的虚拟现实游戏世界，临终前，他宣布自己在游戏中设置了一个彩蛋，找到这枚彩蛋的人即可成为绿洲的继承人...</p>
+                                <p>故事发生在2045年，虚拟现实技术已经渗透到了人类生活的每一个角落。詹姆斯哈利迪（马克·里朗斯 Mark Rylance
+                                    饰）一手建造了名为“绿洲”的虚拟现实游戏世界，临终前，他宣布自己在游戏中设置了一个彩蛋，找到这枚彩蛋的人即可成为绿洲的继承人...</p>
 
                                 <a href="movie-detail.jsp" class="btn btn-main btn-effect">details</a>
                             </div>
@@ -752,7 +757,8 @@
                         <!-- Movie List Image -->
                         <div class="listing-image">
                             <!-- Image -->
-                            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2517753454.webp" alt="">
+                            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2517753454.webp"
+                                 alt="">
                         </div>
 
                         <!-- Movie List Content -->
@@ -777,7 +783,8 @@
                                     </div>
                                 </div>
 
-                                <p>最先与灭霸军团遭遇的雷神索尔一行遭遇惨烈打击，洛基遇害，空间宝石落入灭霸之手。未几，灭霸的先锋部队杀至地球，一番缠斗后掳走奇异博士。为阻止时间宝石落入敌手，斯塔克和蜘蛛侠闯入了敌人的飞船...</p>
+                                <p>
+                                    最先与灭霸军团遭遇的雷神索尔一行遭遇惨烈打击，洛基遇害，空间宝石落入灭霸之手。未几，灭霸的先锋部队杀至地球，一番缠斗后掳走奇异博士。为阻止时间宝石落入敌手，斯塔克和蜘蛛侠闯入了敌人的飞船...</p>
 
                                 <a href="movie-detail.jsp" class="btn btn-main btn-effect">details</a>
                             </div>
@@ -796,7 +803,8 @@
                         <!-- Movie List Image -->
                         <div class="listing-image">
                             <!-- Image -->
-                            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2544987866.webp" alt="">
+                            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2544987866.webp"
+                                 alt="">
                         </div>
 
                         <!-- Movie List Content -->
@@ -821,7 +829,8 @@
                                     </div>
                                 </div>
 
-                                <p>《阿丽塔：战斗天使》由科幻电影大师詹姆斯·卡梅隆编剧及监制，鬼才导演罗伯特·罗德里格兹执导，根据日本作家木城幸人经典漫画《铳梦》改编。未来26世纪，科技发展，人类与机械改造人共存，弱肉强食是钢铁城唯一的生存法则...</p>
+                                <p>
+                                    《阿丽塔：战斗天使》由科幻电影大师詹姆斯·卡梅隆编剧及监制，鬼才导演罗伯特·罗德里格兹执导，根据日本作家木城幸人经典漫画《铳梦》改编。未来26世纪，科技发展，人类与机械改造人共存，弱肉强食是钢铁城唯一的生存法则...</p>
 
                                 <a href="movie-detail.jsp" class="btn btn-main btn-effect">details</a>
                             </div>
@@ -840,7 +849,8 @@
                         <!-- Movie List Image -->
                         <div class="listing-image">
                             <!-- Image -->
-                            <img src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2541901817.webp" alt="">
+                            <img src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2541901817.webp"
+                                 alt="">
                         </div>
 
                         <!-- Movie List Content -->
@@ -865,7 +875,8 @@
                                     </div>
                                 </div>
 
-                                <p>耿浩（黄渤 饰）与一心想发大财的好兄弟大飞（沈腾 饰），经营着各自惨淡的“事业”，然而“天外来客”的意外降临，打破了二人平静又拮据的生活。神秘的西方力量也派出“哼哈二将”在全球搜查外星人行踪。啼笑皆非的跨物种对决，别开生面的“星战”...</p>
+                                <p>耿浩（黄渤 饰）与一心想发大财的好兄弟大飞（沈腾
+                                    饰），经营着各自惨淡的“事业”，然而“天外来客”的意外降临，打破了二人平静又拮据的生活。神秘的西方力量也派出“哼哈二将”在全球搜查外星人行踪。啼笑皆非的跨物种对决，别开生面的“星战”...</p>
 
                                 <a href="movie-detail.jsp" class="btn btn-main btn-effect">details</a>
                             </div>
@@ -884,7 +895,8 @@
                         <!-- Movie List Image -->
                         <div class="listing-image">
                             <!-- Image -->
-                            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2545472803.webp" alt="">
+                            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2545472803.webp"
+                                 alt="">
                         </div>
 
                         <!-- Movie List Content -->
@@ -909,7 +921,8 @@
                                     </div>
                                 </div>
 
-                                <p>近未来，科学家们发现太阳急速衰老膨胀，短时间内包括地球在内的整个太阳系都将被太阳所吞没。为了自救，人类提出一个名为“流浪地球”的大胆计划，即倾全球之力在地球表面建造上万座发动机和转向发动机，推动地球离开太阳系，用2500年的时间奔往另外一个栖息之地...</p>
+                                <p>
+                                    近未来，科学家们发现太阳急速衰老膨胀，短时间内包括地球在内的整个太阳系都将被太阳所吞没。为了自救，人类提出一个名为“流浪地球”的大胆计划，即倾全球之力在地球表面建造上万座发动机和转向发动机，推动地球离开太阳系，用2500年的时间奔往另外一个栖息之地...</p>
 
                                 <a href="movie-detail.jsp" class="btn btn-main btn-effect">details</a>
                             </div>
@@ -983,12 +996,12 @@
 
                 <div class="form-group">
                     <label for="username">用户名</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名*" />
+                    <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名"/>
                 </div>
 
                 <div class="form-group">
                     <label for="password">密码</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码*" />
+                    <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码"/>
                 </div>
 
                 <div class="form-group">
@@ -999,7 +1012,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="登录" class="btn btn-main btn-effect nomargin" />
+                    <input type="submit" value="登录" class="btn btn-main btn-effect nomargin"/>
                 </div>
             </form>
             <!-- End of Login form -->
@@ -1007,9 +1020,9 @@
             <div class="bottom-links">
                     <span>
                         不是会员?
-                        <a  class="signUpClick">注册</a>
+                        <a class="signUpClick">注册</a>
                     </span>
-                <a  class="forgetPasswordClick pull-right">忘记密码</a>
+                <a class="forgetPasswordClick pull-right">忘记密码</a>
             </div>
         </div>
 
@@ -1072,16 +1085,16 @@
         <div class="small-dialog-content">
 
             <!-- Start of Forger Password form -->
-            <form id="forget_pass_form" action="#"  method="post">
+            <form id="forget_pass_form" action="#" method="post">
                 <p class="status"></p>
 
                 <div class="form-group">
                     <label for="password">邮箱地址</label>
-                    <input type="email" name="user_login" class="form-control" id="email3" placeholder="邮箱地址 *" />
+                    <input type="email" name="user_login" class="form-control" id="email3" placeholder="邮箱地址 *"/>
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" name="submit" value="获取新密码" class="btn btn-main btn-effect nomargin" />
+                    <input type="submit" name="submit" value="获取新密码" class="btn btn-main btn-effect nomargin"/>
                 </div>
             </form>
             <!-- End of Forger Password form -->
@@ -1127,7 +1140,8 @@
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript"
+        src="assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>

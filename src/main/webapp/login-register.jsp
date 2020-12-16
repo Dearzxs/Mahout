@@ -12,19 +12,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="no-referrer">
-    <!-- ===== Mobile viewport optimized ===== -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
 
-    <!-- ===== Meta Tags - Description for Search Engine purposes ===== -->
     <meta name="description" content="Movify - Movies, Series & Cinema HTML Template">
     <meta name="keywords" content="movies, series, online streaming, html template, cinema html template">
     <meta name="author" content="GnoDesign">
 
-    <!-- ===== Website Title ===== -->
     <title>Movify电影推荐系统</title>
 
-    <!-- ===== Favicon & Different size apple touch icons ===== -->
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="57x57" href="assets/images/apple-touch-icon-iphone.png">
     <link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-touch-icon-ipad.png">
@@ -35,10 +31,8 @@
     <link rel="icon" sizes="192x192" href="assets/images/icon-hd.png">
     <link rel="icon" sizes="128x128" href="assets/images/icon.png">
 
-    <!-- ===== Google Fonts ===== -->
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 
-    <!-- ===== CSS links ===== -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/revolution/css/settings.css">
     <link rel="stylesheet" type="text/css" href="assets/revolution/css/layers.css">
@@ -87,12 +81,12 @@
 
                             <div class="form-group">
                                 <label for="username">用户名</label>
-                                <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名*" />
+                                <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名" />
                             </div>
 
                             <div class="form-group">
                                 <label for="password">密码</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码*" />
+                                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" />
                             </div>
 
                             <div class="form-group">
@@ -106,7 +100,6 @@
                                 <input type="submit" value="登录" class="btn btn-main btn-effect nomargin" />
                             </div>
                         </form>
-                        <!-- End of Login form -->
 
                         <div class="bottom-links">
                                 <span>
@@ -126,7 +119,6 @@
                         <h4 class="text-center">注册</h4>
                     </div>
                     <div class="small-dialog-content">
-                        <!-- Start of Registration form -->
                         <form id="cariera_registration" action="#" method="POST">
                             <p class="status"></p>
                             <div class="form-group">
@@ -145,11 +137,8 @@
                                 <input type="submit" class="btn btn-main btn-effect nomargin" value="注册"/>
                             </div>
                         </form>
-                        <!-- End of Registration form -->
                         <div class="bottom-links">
-                                <span>
-                                    账户已存在？
-                                    <a class="signInClick">登录</a>
+                                <span>账户已存在？<a class="signInClick">登录</a>
                                 </span>
                             <a class="forgetPasswordClick pull-right">忘记密码</a>
                         </div>
