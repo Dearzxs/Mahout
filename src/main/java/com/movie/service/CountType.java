@@ -20,9 +20,7 @@ public class CountType {
             }
         }
         Probs = sortByValueDescending(Probs);
-//        for (Map.Entry<String, Integer> entry : Probs.entrySet()) {
-//            System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
-//        }
+
         return Probs;
     }
 

@@ -18,7 +18,7 @@
   <!--不需要拦截的URL列表;注意配置时不要拦截后台对用户和密码判断的页面,否则可能登录登录不进主界面-->
   <context-param>
     <param-name>uncheckedUrls</param-name>
-    <param-value>/index.jsp,/LoginServlet,/login-register.jsp</param-value>
+    <param-value>/index.jsp,/LoginServlet,/login-register.jsp,/login-wrong.jsp</param-value>
   </context-param>
 
   <filter>
@@ -28,9 +28,8 @@
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
     <!--过滤站点下所有文件,也可设置成过滤某一类文件如:  "*.jsp" 或是过滤掉某一个文件夹下的所有文件,如: "/目录名/*" -->
-    <url-pattern>*.jsp</url-pattern>
+    <url-pattern>/*</url-pattern>
   </filter-mapping>
-
   <!-- 配置404页面 -->
 <!--  <error-page>-->
 <!--    <error-code>404</error-code>-->

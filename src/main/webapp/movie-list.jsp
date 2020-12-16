@@ -90,11 +90,6 @@
                 <div class="navbar-collapse" id="main-nav">
                     <!-- ====== Start of Main Menu ====== -->
                     <ul class="navbar-nav mx-auto" id="main-menu">
-
-                        <!-- Menu Item -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="personal-homepage.jsp">联系我们</a>
-                        </li>
                     </ul>
                     <!-- ====== End of Main Menu ====== -->
 
@@ -107,7 +102,7 @@
                                     <a class="nav-link" href="PersonServlet">个人中心</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">退出登录</a>
+                                    <a class="dropdown-item" href="LogOutServlet">退出登录</a>
                                 </li>
                             </ul>
                         </li>

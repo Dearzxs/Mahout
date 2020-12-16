@@ -29,6 +29,7 @@ public class PersonDao extends BaseDao{
                 per.setSummary(rs.getString("summary"));
                 personList.add(per);//将Product对象添加到List集合中
             }
+            close(conn,pstmt,rs);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,6 +46,7 @@ public class PersonDao extends BaseDao{
             if (rs.next()) {//光标向后移动，并判断是否有效
                 count = rs.getInt(1);//对总记录数赋值
             }
+            close(conn,pstmt,rs);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,6 +58,8 @@ public class PersonDao extends BaseDao{
         try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,name+"%");
             int rs = pstmt.executeUpdate();
+            conn.close();
+            pstmt.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,6 +83,7 @@ public class PersonDao extends BaseDao{
                 per.setSummary(rs.getString("summary"));
                 personList.add(per);//将Product对象添加到List集合中
             }
+            close(conn,pstmt,rs);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -111,6 +116,7 @@ public class PersonDao extends BaseDao{
                 per.setBirthplace(rs.getString("birthplace"));
                 per.setSummary(rs.getString("summary"));
             }
+            close(conn,pstmt,rs);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,6 +132,7 @@ public class PersonDao extends BaseDao{
             while (rs1.next()) {
                 mList.add(rs1.getString("movie_id"));
             }
+            close(conn1,pstmt1,rs1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -150,6 +157,7 @@ public class PersonDao extends BaseDao{
                 movie.setCountry(rs2.getString("country"));
                 movieList.add(movie);
             }
+            close(conn2,pstmt2,rs2);
         } catch (Exception e) {
             e.printStackTrace();
         }

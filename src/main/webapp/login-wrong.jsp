@@ -9,8 +9,9 @@
 <html>
 <head>
     <title>Movify电影推荐系统</title>
+    <meta http-equiv="Refresh" content="1;url=login-register.jsp">
 </head>
 <body>
-<script type="text/javascript"> alert("账号密码错误"); window.location="index.jsp" </script>
+<script type="text/javascript"> alert("账号或密码错误,请重新输入");</script>
 </body>
 </html>

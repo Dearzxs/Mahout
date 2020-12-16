@@ -115,7 +115,7 @@
                                         <a class="nav-link" href="PersonServlet">个人中心</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">退出登录</a>
+                                        <a class="dropdown-item" href="LogOutServlet">退出登录</a>
                                     </li>
                                 </ul>
                             </li>

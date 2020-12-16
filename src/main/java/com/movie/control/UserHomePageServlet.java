@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "/PersonServlet",urlPatterns = "/PersonServlet")
-public class PersonServlet extends HttpServlet {
+public class UserHomePageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -37,7 +37,7 @@ public class PersonServlet extends HttpServlet {
             List<String> TyList = new ArrayList<String>();
             List<Integer> CtList = new ArrayList<Integer>();
             for (Map.Entry<String, Integer> entry : mp.entrySet()) {
-                if(index==6) break;
+                if(index==8) break;
                 TyList.add(entry.getKey());
                 CtList.add(entry.getValue());
                 index++;
@@ -48,7 +48,7 @@ public class PersonServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        request.getRequestDispatcher("personal-homepage.jsp").forward(request, response);//将请求转发到show.jsp页面中
+        request.getRequestDispatcher("user-homepage.jsp").forward(request, response);//将请求转发到show.jsp页面中
 
     }
 }
