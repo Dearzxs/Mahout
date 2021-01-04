@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "/QueAllPerson", urlPatterns = "/QueAllPerson")
+@WebServlet(name = "/QueAllPerson", urlPatterns = "/QueAllPerson.do")
 public class QueAllPerson extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

@@ -1,5 +1,7 @@
 package com.movie.control;
 
+import com.movie.dao.MovieDao;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,8 @@ public class LogOutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("user");
-        response.sendRedirect("/index.jsp");
+        MovieDao dao = new MovieDao();//实例化MovieDao
+        dao.CleanTempMovie();
+        response.sendRedirect("index.jsp");
     }
 }

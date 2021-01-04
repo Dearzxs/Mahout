@@ -188,12 +188,12 @@
                     <nav class="pagination">
                         <ul>
                             <c:if test="${requestScope.currPage!=1}">
-                                <li><a href="QueAllMovie?page=${requestScope.currPage-1}"><i class="ti-angle-left"></i></a></li>
+                                <li><a href="QueAllMovie.do?page=${requestScope.currPage-1}"><i class="ti-angle-left"></i></a></li>
                             </c:if>
-                            <li><a href="QueAllMovie?page=${requestScope.currPage}" class="current-page">${requestScope.currPage}</a></li>
-                            <li><a href="QueAllMovie?page=${requestScope.currPage+1}">${requestScope.currPage+1}</a></li>
-                            <li><a href="QueAllMovie?page=${requestScope.currPage+2}">${requestScope.currPage+2}</a></li>
-                            <li><a href="QueAllMovie?page=${requestScope.currPage+1}"><i class="ti-angle-right"></i></a></li>
+                            <li><a href="QueAllMovie.do?page=${requestScope.currPage}" class="current-page">${requestScope.currPage}</a></li>
+                            <li><a href="QueAllMovie.do?page=${requestScope.currPage+1}">${requestScope.currPage+1}</a></li>
+                            <li><a href="QueAllMovie.do?page=${requestScope.currPage+2}">${requestScope.currPage+2}</a></li>
+                            <li><a href="QueAllMovie.do?page=${requestScope.currPage+1}"><i class="ti-angle-right"></i></a></li>
                         </ul>
                     </nav>
                 </div>

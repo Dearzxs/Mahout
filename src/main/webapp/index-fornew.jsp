@@ -100,7 +100,7 @@
 
                         <!-- Menu Item -->
                         <li class="nav-item">
-                            <a class="nav-link" href="Recommender.do">推荐电影</a>
+                            <a class="nav-link" href="MovieForNewServlet.do">推荐电影</a>
                         </li>
 
                     </ul>
@@ -970,6 +970,14 @@
 </div>
 <!-- =============== END OF WRAPPER =============== -->
 
+<!-- =============== START OF GENERAL SEARCH WRAPPER =============== -->
+<div class="general-search-wrapper">
+    <form class="general-search" role="search" method="get" action="#">
+        <input type="text" placeholder="Type and hit enter...">
+        <span id="general-search-close" class="ti-close toggle-search"></span>
+    </form>
+</div>
+<!-- =============== END OF GENERAL SEARCH WRAPPER =============== -->
 
 <!-- =============== START OF LOGIN & REGISTER POPUP =============== -->
 <div id="login-register-popup" class="small-dialog zoom-anim-dialog mfp-hide">
@@ -1030,12 +1038,12 @@
         <div class="small-dialog-content">
 
             <!-- Start of Registration form -->
-            <form id="cariera_registration" action="RegisterServlet" method="POST">
+            <form id="cariera_registration" action="#" method="POST">
                 <p class="status"></p>
 
                 <div class="form-group">
                     <label for="movify_user_login">用户名</label>
-                    <input name="username" id="movify_user_login" class="form-control" type="text"/>
+                    <input name="movify_user_login" id="movify_user_login" class="form-control" type="text"/>
                 </div>
 
                 <div class="form-group">
@@ -1045,7 +1053,7 @@
 
                 <div class="form-group">
                     <label for="password">密码</label>
-                    <input name="password" id="movify_password" class="form-control" type="password"/>
+                    <input name="movify_user_pass" id="movify_password" class="form-control" type="password"/>
                 </div>
 
                 <div class="form-group">

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "/QueAllMovie",urlPatterns = "/QueAllMovie.do")
-public class QueAllMovie extends HttpServlet {
+@WebServlet(name = "/MovieForNewServlet", urlPatterns = "/MovieForNewServlet.do")
+public class MovieForNewServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -23,9 +23,9 @@ public class QueAllMovie extends HttpServlet {
             currPage = Integer.parseInt(request.getParameter("page"));//对当前页码赋值
         }
         MovieDao dao = new MovieDao();//实例化MovieDao
-        List<movies> movieList = dao.QueAllMovie(currPage);//查询所有电影的信息
+        List<movies> movieList = dao.GetNewUserMovie(currPage);//查询所有电影的信息
         request.setAttribute("movieList", movieList);//将list放置到request中
         request.setAttribute("currPage",currPage);
-        request.getRequestDispatcher("movie-list.jsp").forward(request, response);
+        request.getRequestDispatcher("movie-for-new.jsp").forward(request, response);
     }
 }

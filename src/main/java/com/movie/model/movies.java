@@ -7,6 +7,7 @@ public class movies {
     private String name;
     private String year;
     private String rating;
+    private String ratingsum;
     private String img;
     private String tags;
     private String summary;
@@ -16,11 +17,12 @@ public class movies {
     public movies() {
     }
 
-    public movies(String id, String name, String year, String rating, String img, String tags, String summary, String genre, String country) {
+    public movies(String id, String name, String year, String rating, String ratingsum, String img, String tags, String summary, String genre, String country) {
         this.id = id;
         this.name = name;
         this.year = year;
         this.rating = rating;
+        this.ratingsum = ratingsum;
         this.img = img;
         this.tags = tags;
         this.summary = summary;
@@ -58,6 +60,14 @@ public class movies {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    public String getRatingsum() {
+        return ratingsum;
+    }
+
+    public void setRatingsum(String ratingsum) {
+        this.ratingsum = ratingsum;
     }
 
     public String getImg() {

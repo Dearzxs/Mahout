@@ -119,11 +119,11 @@
                         <h4 class="text-center">注册</h4>
                     </div>
                     <div class="small-dialog-content">
-                        <form id="cariera_registration" action="#" method="POST">
+                        <form id="cariera_registration" action="RegisterServlet" method="POST">
                             <p class="status"></p>
                             <div class="form-group">
                                 <label for="movify_user_login">用户名</label>
-                                <input name="movify_user_login" id="movify_user_login" class="form-control" type="text"/>
+                                <input name="username" id="movify_user_login" class="form-control" type="text"/>
                             </div>
                             <div class="form-group">
                                 <label for="movify_user_email">邮箱</label>
@@ -131,7 +131,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">密码</label>
-                                <input name="movify_user_pass" id="movify_password" class="form-control" type="password"/>
+                                <input name="password" id="movify_password" class="form-control" type="password"/>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-main btn-effect nomargin" value="注册"/>

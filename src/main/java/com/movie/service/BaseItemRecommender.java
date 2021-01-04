@@ -27,8 +27,8 @@ public class BaseItemRecommender {
         //给用户ID等于5的用户推荐10个与34相似的商品
         List<RecommendedItem> recommendedItemList = recommender.recommendedBecause(Long.parseLong(userid), 34, 4);
         //打印推荐的结果
-        System.out.println("使用基于电影的协同过滤算法");
-        System.out.println("根据用户"+userid+"当前浏览的电影"+mid+"推荐4个相似的电影");
+//        System.out.println("使用基于电影的协同过滤算法");
+//        System.out.println("根据用户"+userid+"当前浏览的电影"+mid+"推荐4个相似的电影");
         List<String> IdList=new ArrayList<String>();
         for (RecommendedItem recommendedItem : recommendedItemList) {
 //            System.out.println(recommendedItem);

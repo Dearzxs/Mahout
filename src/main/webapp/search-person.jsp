@@ -153,14 +153,14 @@
                             <div class="celeb-container">
                                 <!-- Celebrity Image -->
                                 <div class="celebrity-image">
-                                    <a href="actorDetail.jsp">
+                                    <a href="#">
                                         <img src="${item.img}" alt="">
                                     </a>
                                 </div>
                                 <!-- Celebrity Content -->
                                 <div class="celebrity-content">
                                     <div class="inner">
-                                        <h3 class="title"><a href="actorDetail.jsp">${item.name}</a></h3>
+                                        <h3 class="title"><a href="ActorDetailsServlet?id=${item.id}">${item.name}</a></h3>
                                         <p style="display: -webkit-box;-webkit-line-clamp:3;-webkit-box-orient: vertical;overflow: hidden;">${item.summary}.</p>
                                     </div>
                                 </div>
@@ -177,12 +177,12 @@
                     <nav class="pagination">
                         <ul>
                             <c:if test="${requestScope.currPage!=1}">
-                                <li><a href="QueAllPerson?page=${requestScope.currPage-1}"><i class="ti-angle-left"></i></a></li>
+                                <li><a href="QueAllPerson.do?page=${requestScope.currPage-1}"><i class="ti-angle-left"></i></a></li>
                             </c:if>
-                            <li><a href="QueAllPerson?page=${requestScope.currPage}" class="current-page">${requestScope.currPage}</a></li>
+                            <li><a href="QueAllPerson.do?page=${requestScope.currPage}" class="current-page">${requestScope.currPage}</a></li>
                             <c:if test="${requestScope.currPage<requestScope.maxPage}">
-                                <li><a href="QueAllPerson?page=${requestScope.currPage+1}">${requestScope.currPage+1}</a></li>
-                                <li><a href="QueAllPerson?page=${requestScope.currPage+1}"><i class="ti-angle-right"></i></a></li>
+                                <li><a href="QueAllPerson.do?page=${requestScope.currPage+1}">${requestScope.currPage+1}</a></li>
+                                <li><a href="QueAllPerson.do?page=${requestScope.currPage+1}"><i class="ti-angle-right"></i></a></li>
                             </c:if>
                         </ul>
                     </nav>

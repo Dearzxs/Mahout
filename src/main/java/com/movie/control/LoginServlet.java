@@ -21,15 +21,25 @@ public class LoginServlet extends HttpServlet {
         LoginDao dao=new LoginDao();
         User user=dao.LoginUser(userName);
         HttpSession session = request.getSession();
-        if (user != null && password != null && password.equals(userName)) {
+        if (user != null && password != null && password.equals(user.getPassword())) {
             synchronized(session){
                 session.setAttribute("user", user);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
-        } else {
-            response.sendRedirect("/login-wrong.jsp");
+        }else{
+            user=dao.NewUser(userName);
+            if (user != null && password != null && password.equals(user.getPassword())) {
+                synchronized(session){
+                    session.setAttribute("user", user);
+                }
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index-fornew.jsp");
+                dispatcher.forward(request, response);
+            }else {
+                response.sendRedirect("login-wrong.jsp");
+            }
         }
+
 
     }
 

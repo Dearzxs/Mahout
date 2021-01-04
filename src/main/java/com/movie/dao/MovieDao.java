@@ -25,6 +25,7 @@ public class MovieDao extends BaseDao {
                 movie.setName(rs.getString("name"));
                 movie.setYear(rs.getString("year"));
                 movie.setRating(rs.getString("rating"));
+                movie.setRatingsum(rs.getString("ratingsum"));
                 movie.setImg(rs.getString("img"));
                 movie.setTags(rs.getString("tags"));
                 movie.setSummary(rs.getString("summary"));
@@ -67,6 +68,7 @@ public class MovieDao extends BaseDao {
                 movie.setName(rs.getString("name"));
                 movie.setYear(rs.getString("year"));
                 movie.setRating(rs.getString("rating"));
+                movie.setRatingsum(rs.getString("ratingsum"));
                 movie.setImg(rs.getString("img"));
                 movie.setTags(rs.getString("tags"));
                 movie.setSummary(rs.getString("summary"));
@@ -153,6 +155,7 @@ public class MovieDao extends BaseDao {
                 movie.setName(rs2.getString("name"));
                 movie.setYear(rs2.getString("year"));
                 movie.setRating(rs2.getString("rating"));
+                movie.setRatingsum(rs2.getString("ratingsum"));
                 movie.setImg(rs2.getString("img"));
                 movie.setTags(rs2.getString("tags"));
                 movie.setSummary(rs2.getString("summary"));
@@ -236,6 +239,7 @@ public class MovieDao extends BaseDao {
                 movie.setName(rs2.getString("name"));
                 movie.setYear(rs2.getString("year"));
                 movie.setRating(rs2.getString("rating"));
+                movie.setRatingsum(rs2.getString("ratingsum"));
                 movie.setImg(rs2.getString("img"));
                 movie.setTags(rs2.getString("tags"));
                 movie.setSummary(rs2.getString("summary"));
@@ -301,6 +305,35 @@ public class MovieDao extends BaseDao {
                 movie.setName(rs.getString("name"));
                 movie.setYear(rs.getString("year"));
                 movie.setRating(rs.getString("rating"));
+                movie.setRatingsum(rs.getString("ratingsum"));
+                movie.setImg(rs.getString("img"));
+                movie.setTags(rs.getString("tags"));
+                movie.setSummary(rs.getString("summary"));
+                movie.setGenre(rs.getString("genre"));
+                movie.setCountry(rs.getString("country"));
+                movieList.add(movie);
+            }
+            close(conn,pstmt,rs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movieList;
+    }
+
+    public List<movies> GetNewUserMovie(int page){
+        List<movies> movieList=new ArrayList<>();
+        String sql ="select * from movieForNew order by mid limit ?,?";
+        try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, (page - 1) * 6);
+            pstmt.setInt(2, 6);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                movies movie = new movies();
+                movie.setId(rs.getString("mid"));
+                movie.setName(rs.getString("name"));
+                movie.setYear(rs.getString("year"));
+                movie.setRating(rs.getString("rating"));
+                movie.setRatingsum(rs.getString("ratingsum"));
                 movie.setImg(rs.getString("img"));
                 movie.setTags(rs.getString("tags"));
                 movie.setSummary(rs.getString("summary"));

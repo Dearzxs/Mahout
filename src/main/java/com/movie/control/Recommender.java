@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "/Recommender", urlPatterns = "/Recommender")
+@WebServlet(name = "/Recommender", urlPatterns = "/Recommender.do")
 public class Recommender extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

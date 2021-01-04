@@ -1,13 +1,13 @@
 <%--
   Created by IntelliJ IDEA.
   User: zxs
-  Date: 2020/10/22
-  Time: 20:01
+  Date: 2021/1/4
+  Time: 22:55
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false"%>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,7 @@
     <meta name="author" content="GnoDesign">
 
     <!-- ===== Website Title ===== -->
-    <title>Movify电影推荐系统</title>
+    <title>Movify - Movies, Series & Cinema HTML Template</title>
 
     <!-- ===== Favicon & Different size apple touch icons ===== -->
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
@@ -52,6 +52,7 @@
 </head>
 <body>
 
+
 <!-- =============== START OF PRELOADER =============== -->
 <div class="loading">
     <div class="loading-inner">
@@ -70,12 +71,10 @@
 <div class="wrapper">
     <!-- =============== START OF HEADER NAVIGATION =============== -->
     <!-- Insert the class "sticky" in the header if you want a sticky header -->
-    <header class="header header-fixed header-transparent text-white">
+    <header class="header">
         <div class="container-fluid">
-
             <!-- ====== Start of Navbar ====== -->
             <nav class="navbar navbar-expand-lg">
-
                 <a class="navbar-brand" href="index.jsp">
                     <!-- INSERT YOUR LOGO HERE -->
                     <img src="assets/images/logo.svg" alt="logo" width="150" class="logo">
@@ -88,21 +87,18 @@
                           <span class="hamburger-inner"></span>
                        </span>
                 </button>
-
                 <!-- ====== Start of #main-nav ====== -->
                 <div class="navbar-collapse" id="main-nav">
-
                     <!-- ====== Start of Main Menu ====== -->
                     <ul class="navbar-nav mx-auto" id="main-menu">
-
                     </ul>
                     <!-- ====== End of Main Menu ====== -->
-
 
                     <!-- ====== Start of Extra Nav ====== -->
                     <ul class="navbar-nav extra-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.user.userName}</a>
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">${sessionScope.user.userName}</a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a class="nav-link" href="PersonServlet">个人中心</a>
@@ -114,180 +110,102 @@
                         </li>
                     </ul>
                     <!-- ====== End of Extra Nav ====== -->
-
                 </div>
                 <!-- ====== End of #main-nav ====== -->
             </nav>
             <!-- ====== End of Navbar ====== -->
-
         </div>
     </header>
     <!-- =============== END OF HEADER NAVIGATION =============== -->
 
-    <!-- =============== START OF MOVIE DETAIL INTRO =============== -->
-    <section class="movie-detail-intro overlay-gradient ptb100" style="background: url(assets/images/other/movie-detail-bg.jpg);">
-    </section>
-    <!-- =============== END OF MOVIE DETAIL INTRO =============== -->
-
-    <!-- =============== START OF MOVIE DETAIL INTRO 2 =============== -->
-    <section class="movie-detail-intro2">
+    <!-- =============== START OF PAGE HEADER =============== -->
+    <section class="page-header overlay-gradient" style="background: url(assets/images/posters/movie-collection.jpg);">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="movie-poster">
-                        <img src="${requestScope.movieDetails.img}" alt="">
-                    </div>
-                    <div class="movie-details">
-                        <h3 class="title">${requestScope.movieDetails.name}</h3>
-                        <ul class="movie-subtext">
-                            <li>分级</li>
-                            <li>时长</li>
-                            <li>标签（tag）:${requestScope.movieDetails.genre}</li>
-                            <li>上映时间 产地:${requestScope.movieDetails.country}</li>
-                        </ul>
-                        <a href="#" class="btn btn-main btn-effect">添加偏好</a>
-                        <a href="#" class="btn rate-movie"><i class="icon-heart"></i></a>
-                        <div class="rating mt10">
-                            <!--星星-->
-                            <!--
-                            fa fa-star          一颗实心星星
-                            fa fa-star-o        一颗空心星星
-                            fa fa-star-half-o   一颗半空星星
-                            -->
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                            <span>${requestScope.movieDetails.ratingsum}人评价</span>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+            <div class="inner">
+                <h2 class="title">电影列表</h2>
+                <ol class="breadcrumb">
+                    <li><a href="index.jsp">主页</a></li>
+                    <li>电影列表</li>
+                </ol>
             </div>
         </div>
     </section>
-    <!-- =============== End OF MOVIE DETAIL INTRO 2 =============== -->
+    <!-- =============== END OF PAGE HEADER =============== -->
 
-    <!-- =============== START OF MOVIE DETAIL MAIN SECTION =============== -->
-    <section class="movie-detail-main ptb100">
+
+    <!-- =============== START OF MAIN =============== -->
+    <main class="ptb100">
         <div class="container">
+            <!-- Start of Movie List -->
             <div class="row">
-                <!-- Start of Movie Main -->
-                <div class="col-lg-8 col-sm-12">
-                    <div class="inner pr50">
-                        <!-- Storyline -->
-                        <div class="storyline">
-                            <h3 class="title">故事摘要</h3>
+                <c:forEach items="${requestScope.movieList}" var="item">
+                    <!-- Movie List Item -->
+                    <div class="col-md-12 col-sm-12">
+                        <div class="movie-list-2">
+                            <div class="listing-container">
+                                <!-- Movie List Image -->
+                                <div class="listing-image">
+                                    <!-- Image -->
+                                    <div class="img-wrapper">
+                                        <img src="${item.img}" alt="">
+                                    </div>
+                                </div>
+                                <!-- Movie List Content -->
+                                <div class="listing-content">
+                                    <div class="inner">
+                                        <h2 class="title">${item.name}</h2>
+                                        <p>上映年份:${item.year}  电影类型:${item.genre}  上映地区:${item.country}</p>
+                                        <a href="ShowMovieDetails?id=${item.id}" class="btn btn-main btn-effect">details</a>
+                                    </div>
 
-                            <p>${requestScope.movieDetails.summary}</p>
-                        </div>
-                        <!-- Media -->
-                    </div>
-                </div>
-                <!-- End of Movie Main -->
-
-                <!-- Start of Sidebar -->
-                <div class="col-lg-4 col-sm-12">
-                    <div class="sidebar">
-                        <!-- Start of Details Widget -->
-                        <aside class="widget widget-movie-details">
-                            <h3 class="title">详情</h3>
-                            <ul>
-                                <li><strong>发行日期: </strong>${requestScope.movieDetails.year}</li>
-                                <li><strong>导演: </strong><a href="#">Rian Johnson</a></li>
-                                <li><strong>预算: </strong>200 million USD</li>
-                                <li><strong>国家: </strong>${requestScope.movieDetails.country}</li>
-                                <li><strong>语言: </strong>English</li>
-                                <li><strong>制片商: </strong><a href="#">Lucasfilm</a></li>
-                            </ul>
-                        </aside>
-                        <!-- End of Details Widget -->
-                    </div>
-                </div>
-                <div class="col-lg-12 col-sm-12">
-                    <div class="sidebar">
-                        <!-- Start of Details Widget -->
-                        <aside class="widget widget-movie-cast">
-                            <h3 class="title">演职人员</h3>
-                            <c:forEach items="${requestScope.personList}" var="pList">
-                            <ul class="cast-wrapper">
-                                <!--jsp标签循环演员个人信息和照片 5人-->
-                                <li>
-                                    <a href="actorDetail.jsp">
-                                            <span class="circle-img">
-                                                <img src="${pList.img}" alt="">
-                                            </span>
-                                        <h6 class="name">${pList.name}</h6>
-                                    </a>
-                                </li>
-                            </ul>
-                            </c:forEach>
-                            <a href="actorList.jsp" class="btn btn-main btn-effect mt20">view all</a>
-                        </aside>
-                        <!-- End of Details Widget -->
-                    </div>
-                </div>
-                <!-- End of Sidebar -->
-            </div>
-        </div>
-    </section>
-    <!-- =============== END OF MOVIE DETAIL MAIN SECTION =============== -->
-
-    <!-- =============== START OF RECOMMENDED MOVIES SECTION =============== -->
-    <section class="recommended-movies bg-light ptb100">
-        <div class="container">
-            <!-- Start of row -->
-            <div class="row">
-                <div class="col-md-8 col-sm-12">
-                    <h2 class="title">你可能会喜欢...</h2>
-                </div>
-            </div>
-            <!-- End of row -->
-
-            <!-- Start of Latest Movies Slider -->
-            <div class="owl-carousel recommended-slider mt20">
-                <!-- === Start of Sliding Item 1 === -->
-                <!-- 这里自动填充到4个，如果多于4个自动分页，少于4个就会用 item1填满4个 -->
-                <c:forEach items="${requestScope.movieIReList}" var="birmov">
-                    <div class="item">
-                    <!-- Start of Movie Box -->
-                    <div class="movie-box-1">
-                        <!-- Start of Poster -->
-                        <div class="poster">
-                            <img src="${birmov.img}" alt="">
-                        </div>
-                        <!-- End of Poster -->
-                        <!-- Start of Movie Details -->
-                        <div class="movie-details">
-                            <h4 class="movie-title">
-                                <a href="movie-detail.jsp">${birmov.name}</a>
-                            </h4>
-                            <span class="released">${birmov.year}</span>
-                        </div>
-                        <!-- End of Movie Details -->
-                        <!-- Start of Rating -->
-                        <div class="stars">
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
+                                    <!-- Buttons -->
+                                    <div class="buttons">
+                                        <a href="#" data-original-title="Rate" data-toggle="tooltip" data-placement="bottom">
+                                            <i class="icon-heart"></i>
+                                        </a>
+                                        <a href="#" data-original-title="Share" data-toggle="tooltip" data-placement="bottom">
+                                            <i class="icon-share"></i>
+                                        </a>
+                                    </div>
+                                    <!-- Rating -->
+                                    <div class="stars">
+                                        <div class="rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <span>${birmov.rating}</span>
                         </div>
-                        <!-- End of Rating -->
                     </div>
-                    <!-- End of Movie Box -->
-                </div>
                 </c:forEach>
-                <!-- === End of Sliding Item 1 === -->
             </div>
-            <!-- End of Latest Movies Slider -->
+            <!-- End of Movie List -->
+
+            <!-- Start of Pagination -->
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <nav class="pagination">
+                        <ul>
+                            <c:if test="${requestScope.currPage!=1}">
+                                <li><a href="MovieForNewServlet.do?page=${requestScope.currPage-1}"><i class="ti-angle-left"></i></a></li>
+                            </c:if>
+                            <li><a href="MovieForNewServlet.do?page=${requestScope.currPage}" class="current-page">${requestScope.currPage}</a></li>
+                            <li><a href="MovieForNewServlet.do?page=${requestScope.currPage+1}">${requestScope.currPage+1}</a></li>
+                            <li><a href="MovieForNewServlet.do?page=${requestScope.currPage+2}">${requestScope.currPage+2}</a></li>
+                            <li><a href="MovieForNewServlet.do?page=${requestScope.currPage+1}"><i class="ti-angle-right"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End of Pagination -->
+
         </div>
-    </section>
-    <!-- =============== END OF RECOMMENDED MOVIES SECTION =============== -->
+    </main>
+    <!-- =============== END OF MAIN =============== -->
 
     <!-- =============== START OF FOOTER =============== -->
     <footer class="footer1 bg-dark">
@@ -319,7 +237,6 @@
 </div>
 <!-- =============== END OF WRAPPER =============== -->
 
-
 <!-- ===== Start of Back to Top Button ===== -->
 <div id="backtotop">
     <a href="#"></a>
@@ -349,11 +266,13 @@
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript"
+        src="assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
 </body>
 </html>
